@@ -72,7 +72,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username"
+                                <input type="text" class="form-control" id="NamaPengguna" name="NamaPengguna"
                                     placeholder="Enter your username" autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -80,7 +80,7 @@
                                     <label class="form-label" for="password">Password</label>
                                 </div>
                                 <div class="input-group input-group-merge">
-                                    <input type="password" id="password" name="password" class="form-control"
+                                    <input type="password" id="Password" name="Password" class="form-control"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>

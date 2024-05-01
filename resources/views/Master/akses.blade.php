@@ -17,21 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Major</label>
-                            <div class="col-sm-9">
-                                {{-- <input class="form-control" value="{{ request('specialist_name') }}" type="text"
-                        placeholder="Enter Specialist..." id="specialist_name" name="specialist_name">
-                    <input type="hidden" id="id_specialist" name="id_specialist"> --}}
-                                <input class="form-control" value="{{ request('course_name') }}" type="text"
-                                    placeholder="Enter Course..." id="course_name" name="course_name">
-                                <input type="hidden" id="id_course" name="id_course">
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
                 <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
                     <button class="btn btn-secondary" id="btn_filter" type="submit">
                         Filter
@@ -120,9 +106,7 @@
 
         </div>
     </div>
-@endsection
-@section('js')
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <script>

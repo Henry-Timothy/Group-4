@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pembelian extends Model
 {
-    protected $table = 'introduction_to_data.tb_pembelian';
+    protected $table = 'tb_pembelian';
     protected $primaryKey = 'IdPembelian';
     public $timestamps = false;
 }

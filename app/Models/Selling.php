@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penjualan extends Model
+class Selling extends Model
 {
-    protected $table = 'introduction_to_data.tb_penjualan';
-    protected $primaryKey = 'IdPenjualan';
+    protected $table = 'punya_farrel.tb_selling';
+    protected $primaryKey = 'id_selling';
     public $timestamps = false;
 }

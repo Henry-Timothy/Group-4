@@ -4,8 +4,8 @@
         <div class="d-flex align-items-end row">
             <div class="col-sm-7">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Hallo {{ $user->NamaDepan }} {{ $user->NamaBelakang }} as
-                        {{ $user->NamaAkses }}! 🎉</h5>
+                    <h5 class="card-title text-primary">Hallo {{ $user->first_name }} {{ $user->last_name }} as
+                        {{ $user->acces_name }}! 🎉</h5>
                     <p class="mb-4">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut lacinia justo. Vestibulum viverra,
                         ligula fermentum posuere vestibulum, odio diam vulputate ex, id ornare lectus ipsum eu massa.

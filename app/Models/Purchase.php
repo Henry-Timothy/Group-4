@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Barang extends Model
+class Purchase extends Model
 {
-    protected $table = 'introduction_to_data.tb_barang';
-    protected $primaryKey = 'IdBarang';
+    protected $table = 'punya_farrel.tb_purchase';
+    protected $primaryKey = 'id_purchase';
     public $timestamps = false;
 }

@@ -27,6 +27,17 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
         rel="stylesheet" />
+    <style>
+        .btn-icon {
+            padding: 0;
+            width: calc(1.709375rem + 2px);
+            height: calc(1.709375rem + 2px);
+            display: inline-flex;
+            flex-shrink: 0;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,15 +67,15 @@
 
                     <!-- Master -->
                     <li
-                        class="menu-item {{ $title == 'Akses' || $title == 'Barang' || $title == 'Pengguna' ? 'active open' : '' }}">
+                        class="menu-item {{ $title == 'Acces' || $title == 'Barang' || $title == 'Pengguna' ? 'active open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                             <div>Master</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item {{ $title == 'Akses' ? 'active' : '' }}">
-                                <a href="{{ route('akses') }}" class="menu-link">
-                                    <div>Akses</div>
+                            <li class="menu-item {{ $title == 'Acces' ? 'active' : '' }}">
+                                <a href="{{ route('acces') }}" class="menu-link">
+                                    <div>Acces</div>
                                 </a>
                             </li>
                             <li class="menu-item {{ $title == 'Barang' ? 'active' : '' }}">
@@ -172,8 +183,8 @@
                         @if ($title == 'Dashboard')
                             @yield('dashboard')
                         @endif
-                        @if ($title == 'Akses')
-                            @yield('akses')
+                        @if ($title == 'Acces')
+                            @yield('acces')
                         @endif
                         @if ($title == 'Barang')
                             @yield('barang')

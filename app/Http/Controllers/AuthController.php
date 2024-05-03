@@ -21,24 +21,25 @@ class AuthController extends Controller
 
     public function check_login(Request $request)
     {
-        $NamaPengguna = $request->NamaPengguna;
-        $Password = $request->Password;
+        $username = $request->username;
+        $password = $request->password;
 
-        $account = DB::table('tb_pengguna')
-            ->where('NamaPengguna', $NamaPengguna)
-            ->where('Password', $Password)
+        $account = DB::table('punya_farrel.tb_user')
+            ->where('username', $username)
+            ->where('password', $password)
+            ->where('user_softdel', 0)
             ->first();
 
         if ($account != null) {
-            $check_level = DB::table('tb_hak_akses')
-                ->where('IdAkses', $account->IdAkses)
+            $check_level = DB::table('punya_farrel.tb_acces')
+                ->where('id_acces', $account->id_acces)
                 ->first();
             if ($check_level != null) {
                 session_start();
-                $request->Session()->put('IdPengguna', $account->IdPengguna);
-                $request->Session()->put('NamaPengguna', $NamaPengguna);
+                $request->Session()->put('id_user', $account->id_user);
+                $request->Session()->put('username', $username);
                 $request->Session()->put('logged_in', true);
-                $request->Session()->put('IdAkses', $account->IdAkses);
+                $request->Session()->put('id_acces', $account->id_acces);
                 $request->Session()->save();
 
                 return redirect('dashboard');

@@ -27,6 +27,17 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
         rel="stylesheet" />
+    <style>
+        .btn-icon {
+            padding: 0;
+            width: calc(1.709375rem + 2px);
+            height: calc(1.709375rem + 2px);
+            display: inline-flex;
+            flex-shrink: 0;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,20 +67,20 @@
 
                     <!-- Master -->
                     <li
-                        class="menu-item {{ $title == 'Akses' || $title == 'Barang' || $title == 'Pengguna' ? 'active open' : '' }}">
+                        class="menu-item {{ $title == 'Acces' || $title == 'Item' || $title == 'Pengguna' ? 'active open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                             <div>Master</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item {{ $title == 'Akses' ? 'active' : '' }}">
-                                <a href="{{ route('akses') }}" class="menu-link">
-                                    <div>Akses</div>
+                            <li class="menu-item {{ $title == 'Acces' ? 'active' : '' }}">
+                                <a href="{{ route('acces') }}" class="menu-link">
+                                    <div>Acces</div>
                                 </a>
                             </li>
-                            <li class="menu-item {{ $title == 'Barang' ? 'active' : '' }}">
-                                <a href="{{ route('barang') }}" class="menu-link">
-                                    <div>Barang</div>
+                            <li class="menu-item {{ $title == 'Item' ? 'active' : '' }}">
+                                <a href="{{ route('item') }}" class="menu-link">
+                                    <div>Item</div>
                                 </a>
                             </li>
                             <li class="menu-item {{ $title == 'Pengguna' ? 'active' : '' }}">
@@ -178,11 +189,11 @@
                         @if ($title == 'Dashboard')
                             @yield('dashboard')
                         @endif
-                        @if ($title == 'Akses')
-                            @yield('akses')
+                        @if ($title == 'Acces')
+                            @yield('acces')
                         @endif
-                        @if ($title == 'Barang')
-                            @yield('barang')
+                        @if ($title == 'Item')
+                            @yield('item')
                         @endif
                         @if ($title == 'Pengguna')
                             @yield('pengguna')
@@ -248,6 +259,32 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    @if (\Session::has('success'))
+        var msg = "{{ Session::get('success') }}"
+        Swal.fire(
+            'Success',
+            msg,
+            'success'
+        )
+        @php \Session::forget('success') @endphp
+        @php \Session::forget('error') @endphp
+        @php \Session::forget('info') @endphp
+    @endif
+
+    @if (\Session::has('error'))
+        var msg = "{{ Session::get('error') }}"
+        Swal.fire(
+            'Whoops',
+            msg,
+            'error'
+        )
+        @php \Session::forget('success') @endphp
+        @php \Session::forget('error') @endphp
+        @php \Session::forget('info') @endphp
+    @endif
+</script>
 
 </html>

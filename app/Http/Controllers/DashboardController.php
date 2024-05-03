@@ -14,15 +14,14 @@ class DashboardController extends Controller
 
     public function get_id_user(Request $request)
     {
-        $IdPengguna = $request->Session()->get('IdPengguna');
-        $user = DB::table('tb_pengguna')
-            ->select('tb_pengguna.NamaDepan', 'tb_pengguna.NamaBelakang', 'tb_pengguna.IdPengguna', 'tb_pengguna.IdAkses', 'tb_hak_akses.NamaAkses')
-            ->join('tb_hak_akses', 'tb_hak_akses.IdAkses', 'tb_pengguna.IdAkses')
-            ->where('IdPengguna', $IdPengguna)
+        $id_user = $request->Session()->get('id_user');
+        $user = DB::table('punya_farrel.tb_user')
+            ->select('tb_user.first_name', 'tb_user.last_name', 'tb_user.id_user', 'tb_user.id_acces', 'tb_acces.acces_name')
+            ->join('punya_farrel.tb_acces', 'tb_acces.id_acces', 'tb_user.id_acces')
+            ->where('id_user', $id_user)
             ->first();
         return $user;
     }
-
 
     public function dashboard(Request $request)
     {

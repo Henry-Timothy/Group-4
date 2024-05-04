@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,10 @@ Route::post('user/add_user', [UserController::class, 'add_user'])->name('user/ad
 Route::post('user/edit_user', [UserController::class, 'edit_user'])->name('user/edit_user');
 Route::post('user/delete_user', [UserController::class, 'delete_user'])->name('user/delete_user');
 Route::get('/detail_user/{id}', [UserController::class, 'detail_user'])->name('detail_user/{id}');
+
+// Customer
+Route::get('/customer', [CustomerController::class, 'customer'])->name('customer');
+Route::post('customer/add_customer', [CustomerController::class, 'add_customer'])->name('customer/add_customer');
+Route::post('customer/edit_customer', [CustomerController::class, 'edit_customer'])->name('customer/edit_customer');
+Route::post('customer/delete_customer', [CustomerController::class, 'delete_customer'])->name('customer/delete_customer');
+Route::get('/get_id_customer/{id}', [CustomerController::class, 'get_id_customer'])->name('get_id_customer/{id}');

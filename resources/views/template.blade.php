@@ -85,7 +85,7 @@
 
                     <!-- Master -->
                     <li
-                        class="menu-item {{ $title == 'Acces' || $title == 'Item' || $title == 'User' ? 'active open' : '' }}">
+                        class="menu-item {{ $title == 'Acces' || $title == 'Customer' || $title == 'Item' || $title == 'User' ? 'active open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                             <div>Master</div>
@@ -96,9 +96,19 @@
                                     <div>Acces</div>
                                 </a>
                             </li>
+                            <li class="menu-item {{ $title == 'Customer' ? 'active' : '' }}">
+                                <a href="{{ route('customer') }}" class="menu-link">
+                                    <div>Customer</div>
+                                </a>
+                            </li>
                             <li class="menu-item {{ $title == 'Item' ? 'active' : '' }}">
                                 <a href="{{ route('item') }}" class="menu-link">
                                     <div>Item</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="" class="menu-link">
+                                    <div>Supplier</div>
                                 </a>
                             </li>
                             <li class="menu-item {{ $title == 'User' ? 'active' : '' }}">
@@ -111,14 +121,9 @@
                                     <div>Pelanggan</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
-                                    <div>Supplier</div>
-                                </a>
-                            </li>
                         </ul>
                     </li>
-          
+
 
                 </ul>
             </aside>
@@ -180,6 +185,9 @@
                         @endif
                         @if ($title == 'Acces')
                             @yield('acces')
+                        @endif
+                        @if ($title == 'Customer')
+                            @yield('customer')
                         @endif
                         @if ($title == 'Item')
                             @yield('item')

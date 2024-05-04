@@ -100,13 +100,13 @@
                                             <td>{{ $item->selling_qty }}</td>
                                             <td>{{ 'Rp. ' . number_format($item->total_purchase_price, 0, ',', '.') }}</td>
                                             <td>{{ 'Rp. ' . number_format($item->total_selling_price, 0, ',', '.') }}</td>
-                                            <td>{{ number_format($item->calculate, 0, ',', '.') }}</td>
+                                            <td>{{ 'Rp. ' . number_format($item->calculate, 0, ',', '.') }}</td>
                                             @if ($item->calculate > 0)
-                                                <td> {{ abs($item->calculate) }}</td>
+                                                <td> {{ 'Rp. ' . number_format($item->calculate, 0, ',', '.') }}</td>
                                                 <td>-</td>
                                             @else
                                                 <td>-</td>
-                                                <td> {{ $item->calculate }}</td>
+                                                <td> {{ 'Rp. ' . number_format($item->calculate, 0, ',', '.') }}</td>
                                             @endif
                                         </tr>
                                     @endforeach
@@ -167,10 +167,7 @@
             </tr>
         </tbody>
     </table>
-    <div id="container" class="mt-3"></div>
-
-
-
+    
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>

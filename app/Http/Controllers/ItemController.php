@@ -72,6 +72,7 @@ class ItemController extends Controller
         $data->item_name = $request->item_name;
         $data->description = $request->description;
         $data->unit = $request->unit;
+        $data->price = $request->price;
         $data->item_inserted_at = date('Y-m-d H:i:s');
         $data->item_last_updated = date('Y-m-d H:i:s');
         $data->item_softdel = 0;
@@ -92,6 +93,7 @@ class ItemController extends Controller
         $data->item_name = $request->edit_item_name;
         $data->description = $request->edit_description;
         $data->unit = $request->edit_unit;
+        $data->price = $request->edit_price;
         $data->item_last_updated = date('Y-m-d H:i:s');
 
         $data->save();

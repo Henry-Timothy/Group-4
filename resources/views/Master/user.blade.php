@@ -121,6 +121,8 @@
                                         </button>
                                     </td>
                                 </tr>
+                                <input type="hidden" id="data_id_acces<?= $item->id_user ?>"
+                                    value="<?= $item->id_acces ?>">
                             @endforeach
                         @endif
                     </tbody>
@@ -244,6 +246,7 @@
                 <form action="{{ route('user/edit_user') }}"method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id_user" id="id_user">
+
                     <div class="modal-body">
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Username</label>
@@ -414,7 +417,8 @@
                         $('#edit_last_name').val(response.user.last_name)
                         $('#edit_phone_number').val(response.user.phone_number)
                         $('#edit_address').val(response.user.address)
-                        $('#edit_id_acces').val(response.user.id_acces)
+                        $('#edit_id_acces').val($('#data_id_acces' + id_user).val()).trigger(
+                            "change");
                         $('#id_user').val(response.user.id_user)
                     }
                 })

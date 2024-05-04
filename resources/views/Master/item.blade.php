@@ -60,6 +60,13 @@
                                     class="btnUnitAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
+                                Unit
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'price' ? 'brown' : '' }};"
+                                    class="btnPriceDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'price' ? 'brown' : '' }};"
+                                    class="btnPriceAsc fas fa-arrow-alt-circle-down"></a>
+                            </th>
+                            <th class="p-1 text-center">
                                 Inserted At
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'item_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertDesc fas fa-arrow-alt-circle-up"></a>
@@ -94,6 +101,7 @@
                                     <td style="font-size: 14px;" class="p-2">{{ $item->item_name }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->description }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->unit }}</td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->price }}</td>
                                     <td style="font-size: 14px;" class="p-2">
                                         {{ date('d F Y h:i:s', strtotime($item->item_inserted_at)) }}
                                     </td>
@@ -178,6 +186,13 @@
                                     placeholder="Insert unit">
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Price</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="price" name="price"
+                                    placeholder="Insert price">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -221,6 +236,13 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="edit_unit" name="edit_unit"
                                     placeholder="Insert unit" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Price</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="edit_price" name="edit_price"
+                                    placeholder="Insert price">
                             </div>
                         </div>
                     </div>
@@ -315,6 +337,16 @@
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
+        $('.btnPriceDesc').click(function() {
+            $('#order_name').val('Price');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnPriceAsc').click(function() {
+            $('#order_name').val('Price');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
         $('.btnInsertDesc').click(function() {
             $('#order_name').val('item_inserted_at');
             $('#order_type').val('DESC');
@@ -351,6 +383,7 @@
                         $('#edit_item_name').val(response.item.item_name)
                         $('#edit_description').val(response.item.description)
                         $('#edit_unit').val(response.item.unit)
+                        $('#edit_price').val(response.item.price)
                         $('#id_item').val(response.item.id_item)
                     }
                 })

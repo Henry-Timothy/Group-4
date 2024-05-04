@@ -118,12 +118,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item {{ $title == 'Transaksi' ? 'active' : '' }}">
-                        <a href="{{ route('transaksi') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div>Transaksi</div>
-                        </a>
-                    </li>
+          
 
                 </ul>
             </aside>

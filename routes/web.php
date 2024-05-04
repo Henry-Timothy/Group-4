@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -56,6 +57,12 @@ Route::post('customer/edit_customer', [CustomerController::class, 'edit_customer
 Route::post('customer/delete_customer', [CustomerController::class, 'delete_customer'])->name('customer/delete_customer');
 Route::get('/get_id_customer/{id}', [CustomerController::class, 'get_id_customer'])->name('get_id_customer/{id}');
 
+// Supplier
+Route::get('/supplier', [SupplierController::class, 'supplier'])->name('supplier');
+Route::post('supplier/add_supplier', [SupplierController::class, 'add_supplier'])->name('supplier/add_supplier');
+Route::post('supplier/edit_supplier', [SupplierController::class, 'edit_supplier'])->name('supplier/edit_supplier');
+Route::post('supplier/delete_supplier', [SupplierController::class, 'delete_supplier'])->name('supplier/delete_supplier');
+Route::get('/get_id_supplier/{id}', [SupplierController::class, 'get_id_supplier'])->name('get_id_supplier/{id}');
 
 // Transaction
 Route::get('/transaction', [TransactionController::class, 'transaction'])->name('transaction');

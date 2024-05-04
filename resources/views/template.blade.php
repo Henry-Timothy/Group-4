@@ -85,7 +85,7 @@
 
                     <!-- Master -->
                     <li
-                        class="menu-item {{ $title == 'Acces' || $title == 'Customer' || $title == 'Item' || $title == 'User' ? 'active open' : '' }}">
+                        class="menu-item {{ $title == 'Acces' || $title == 'Customer' || $title == 'Item' || $title == 'Supplier' || $title == 'User' ? 'active open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                             <div>Master</div>
@@ -106,19 +106,14 @@
                                     <div>Item</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
+                            <li class="menu-item {{ $title == 'Supplier' ? 'active' : '' }}">
+                                <a href="{{ route('supplier') }}" class="menu-link">
                                     <div>Supplier</div>
                                 </a>
                             </li>
                             <li class="menu-item {{ $title == 'User' ? 'active' : '' }}">
                                 <a href="{{ route('user') }}" class="menu-link">
                                     <div>User</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-link">
-                                    <div>Pelanggan</div>
                                 </a>
                             </li>
                         </ul>
@@ -211,6 +206,9 @@
                         @endif
                         @if ($title == 'Add Transaction')
                             @yield('page-add-transaction')
+                        @endif
+                        @if ($title == 'Supplier')
+                            @yield('supplier')
                         @endif
                     </div>
                     <footer class="content-footer footer bg-footer-theme">

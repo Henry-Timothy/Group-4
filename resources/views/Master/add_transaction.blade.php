@@ -144,7 +144,7 @@
                         'id_customer': id
                     },
                     success: function(data) {
-                        location.reload();
+                        window.location.href = 'transaction';
                     }
                 });
             }

@@ -55,6 +55,16 @@
         .select2-selection {
             border: 1px solid #d9dee3 !important;
         }
+
+        .cards {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cards:hover {
+            box-shadow: 5px 6px 6px 2px #b5b8b9;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -210,8 +220,8 @@
                             @yield('supplier')
                         @endif
                         @if ($title == 'Purchase')
-                        @yield('purchase')
-                    @endif
+                            @yield('purchase')
+                        @endif
                     </div>
                     <footer class="content-footer footer bg-footer-theme">
                         <div

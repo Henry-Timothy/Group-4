@@ -31,8 +31,18 @@ class DashboardController extends Controller
                 'user' => $this->get_id_user($request),
             ];
 
+            $total_customer = DB::table('tb_customer')
+                ->where('customer_softdel', 0)
+                ->count();
+
+            $total_supplier = DB::table('tb_supplier')
+                ->where('supplier_softdel', 0)
+                ->count();
+
             return view('Dashboard.dashboard', $data, [
                 'title' => 'Dashboard',
+                'total_customer' => $total_customer,
+                'total_supplier' => $total_supplier,
             ]);
         } else {
             return redirect('/');

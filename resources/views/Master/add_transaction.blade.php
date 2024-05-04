@@ -87,7 +87,8 @@
                                         <td style="font-size: 14px;" class="text-center">
                                             {{ $it->qty }}</td>
                                         <td style="font-size: 14px;" class="text-center">
-                                            {{ 'Rp. ' . number_format($it->price, 0, ',', '.') }}
+                                            {{-- {{ 'Rp. ' . number_format($it->price, 0, ',', '.') }} --}}
+                                            {{'Rp. ' . $it->price}}
                                         <td style="font-size: 14px;" class="text-center">
                                             {{ 'Rp. ' . number_format($it->total_price, 0, ',', '.') }}</td>
                                         <td>
@@ -161,10 +162,10 @@
                 type: "GET",
                 url: "{{ url('get-item') }}/" + id,
                 success: function(data) {
-                    console.log(data.unit);
                     // $('#price_item').val(data.price);
                     $('#price_item').val(formatCurrency(data.price));
-                    $('#price_asli').val(data.price);
+                    $('#price_asli').val(parseInt(data.price.replace(".", "")));
+                    console.log( $('#price_asli').val());
                     $('#stock').text("Stock : " + data.unit);
                     $('#overtime_price').val(formatCurrency(data.overtime_price));
                 }
@@ -177,7 +178,7 @@
             var qty = $('#qty').val();
 
             var priceString = priceInput.replace(/^Rp\s+|(\.)+/g, '');
-            console.log(qty);
+
             var total = priceString * qty;
             $('#total_nominal_asli').val(total);
             $('#total_nominal').val(formatCurrency(total));

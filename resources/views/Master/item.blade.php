@@ -25,21 +25,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <label class="col-sm-3 col-form-label">Supplier</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-select filter_supplier" id="id_supplier" name="id_supplier"
-                                            style="width: 100% ! important;">
-                                            <option hidden value="">Select Supplier</option>
-                                            @foreach ($supplier as $data)
-                                                <option value="{{ request('id_supplier') }}">
-                                                    {{ $data->supplier_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
                             <button class="btn btn-secondary" id="btn_filter" type="submit">
@@ -134,7 +119,9 @@
                                     <td style="font-size: 14px;" class="p-2">{{ $item->item_name }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->description }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->unit }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->price }}</td>
+                                    <td style="font-size: 14px;" class="p-2">
+                                        {{ 'Rp. ' . number_format($item->price, 0, ',', '.') }}
+                                    </td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->supplier_name }}</td>
                                     <td style="font-size: 14px;" class="p-2">
                                         {{ date('d F Y h:i:s', strtotime($item->item_inserted_at)) }}

@@ -124,6 +124,12 @@
                             <div>Transaction</div>
                         </a>
                     </li>
+                    <li class="menu-item {{ $title == 'Purchase' ? 'active' : '' }}">
+                        <a href="{{ route('purchase') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-archive-in"></i>
+                            <div>Purchase</div>
+                        </a>
+                    </li>
                 </ul>
             </aside>
             <div class="layout-page">
@@ -203,6 +209,9 @@
                         @if ($title == 'Supplier')
                             @yield('supplier')
                         @endif
+                        @if ($title == 'Purchase')
+                        @yield('purchase')
+                    @endif
                     </div>
                     <footer class="content-footer footer bg-footer-theme">
                         <div

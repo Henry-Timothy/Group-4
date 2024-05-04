@@ -47,9 +47,9 @@ class TransactionController extends Controller
                 ->join('punya_farrel.tb_customer', 'tb_customer.id_customer', 'tb_transaction.id_customer')
                 ->join('punya_farrel.tb_user', 'tb_user.id_user', 'tb_transaction.transaction_inserted_by');
 
-            // if ($request->search) {
-            //     $data->where(DB::raw("CONCAT(`NamaAkses`,' ',`Keterangan`)"), 'like', '%' . $search . '%');
-            // }
+            if ($request->search) {
+                $data->where(DB::raw("CONCAT(`customer_name`)"), 'like', '%' . $search . '%');
+            }
 
             if ($request->order_name == '') {
                 $order_name = 'id_transaction';
@@ -94,10 +94,10 @@ class TransactionController extends Controller
             $customer = DB::table('tb_customer')->get();
 
             $detail_trans = DB::table('tb_detail_transaction')
-            ->join('tb_item', 'tb_item.id_item', '=', 'tb_detail_transaction.id_item')
-            ->where('id_transaction', 0)
-            ->where('detail_transaction_softdel', 0)
-            ->get();
+                ->join('tb_item', 'tb_item.id_item', '=', 'tb_detail_transaction.id_item')
+                ->where('id_transaction', 0)
+                ->where('detail_transaction_softdel', 0)
+                ->get();
 
             return view('Master.add_transaction', $user, [
                 'title' => 'Add Transaction',
@@ -129,17 +129,17 @@ class TransactionController extends Controller
         $data->detail_transaction_softdel = 0;
 
         $item = Item::find($request->id_item);
-        $item->unit = $item->unit  - $request->qty;
+        $item->unit = $item->unit - $request->qty;
 
         $item->save();
         $data->save();
 
 
         if ($data) {
-            \Session::put('success', 'Add New Acces Success!');
+            \Session::put('success', 'Add New Transaction Success!');
             return redirect()->back();
         } else {
-            \Session::put('error', 'Add New Acces Failed!');
+            \Session::put('error', 'Add New Transaction Failed!');
             return redirect()->back();
         }
     }
@@ -166,33 +166,31 @@ class TransactionController extends Controller
     public function add_trans(Request $request)
     {
         $a = DB::table('tb_detail_transaction')
-        ->join('tb_item', 'tb_item.id_item', '=', 'tb_detail_transaction.id_item')
-        ->where('id_transaction', 0)
-        ->where('detail_transaction_softdel', 0);
+            ->join('tb_item', 'tb_item.id_item', '=', 'tb_detail_transaction.id_item')
+            ->where('id_transaction', 0)
+            ->where('detail_transaction_softdel', 0);
 
         $data = new Transaction();
         $data->id_customer = $request->id_customer;
         $data->total_amount = $a->sum('total_price');
         $data->transaction_inserted_at = date('Y-m-d H:i:s');
-        $data->transaction_inserted_by =$request->Session()->get('id_user');
+        $data->transaction_inserted_by = $request->Session()->get('id_user');
 
         $data->save();
 
 
         $detail_trans = $a->get();
-        foreach($detail_trans as $det){
+        foreach ($detail_trans as $det) {
             $data_detail = TransactionDetail::find($det->id_detail_transaction);
             $data_detail->id_transaction = $data->id_transaction;
             $data_detail->save();
         }
         if ($data) {
-            \Session::put('success', 'Add New Acces Success!');
+            \Session::put('success', 'Add New Transaction Success!');
             return redirect()->back();
         } else {
-            \Session::put('error', 'Add New Acces Failed!');
+            \Session::put('error', 'Add New Transaction Failed!');
             return redirect()->back();
         }
     }
-
-
 }

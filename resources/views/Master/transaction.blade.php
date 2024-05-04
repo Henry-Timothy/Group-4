@@ -84,7 +84,7 @@
                         ?>
                         @if ($data->isEmpty())
                             <tr>
-                                <td colspan="4" style="text-align: center">No data</td>
+                                <td colspan="6" style="text-align: center">No data</td>
                             </tr>
                         @else
                             @foreach ($data as $item)

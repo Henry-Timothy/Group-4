@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +72,10 @@ Route::get('page-add-transaction', [TransactionController::class, 'page_add_tran
 Route::get('/get-item/{id}', [TransactionController::class, 'get_item'])->name('get-item/{id}');
 Route::post('trans/add', [TransactionController::class, 'add_trans'])->name('trans/add');
 
-
 // Transaction Detail
 Route::post('transaction/add', [TransactionController::class, 'add_transaction'])->name('transaction/add');
 Route::post('transaction/delete/{id}', [TransactionController::class, 'delete_transaction_detail'])->name('transaction/delete/{id}');
+
+// Purchase
+Route::get('/purchase', [PurchaseController::class, 'purchase'])->name('purchase');
+Route::post('purchase/add', [PurchaseController::class, 'add_purchase'])->name('purchase/add');

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,16 @@ Route::get('/get_id_item/{id}', [ItemController::class, 'get_id_item'])->name('g
 
 // Pengguna
 Route::get('/pengguna', [PenggunaController::class, 'pengguna'])->name('pengguna');
+
+
+// Transaction
+Route::get('/transaction', [TransactionController::class, 'transaction'])->name('transaction');
+Route::get('detail-by-transaction/{id}', [TransactionController::class, 'detail_trans_by_id'])->name('detail-by-transaction/{id}');
+Route::get('page-add-transaction', [TransactionController::class, 'page_add_transaction'])->name('page-add-transaction');
+Route::get('/get-item/{id}', [TransactionController::class, 'get_item'])->name('get-item/{id}');
+Route::post('trans/add', [TransactionController::class, 'add_trans'])->name('trans/add');
+
+
+// Transaction Detail
+Route::post('transaction/add', [TransactionController::class, 'add_transaction'])->name('transaction/add');
+Route::post('transaction/delete/{id}', [TransactionController::class, 'delete_transaction_detail'])->name('transaction/delete/{id}');

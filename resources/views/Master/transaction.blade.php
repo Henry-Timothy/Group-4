@@ -1,5 +1,5 @@
 @extends('template')
-@section('akses')
+@section('transaction')
     <div class="card">
         <div class="card-body">
             <form class="row d-flex" id="search_form" method="GET">
@@ -34,25 +34,26 @@
                         <tr class="table-active">
                             <th class="p-1 text-center">No</th>
                             <th class="p-1 text-center">
-                                Nama Akses
+                                Nama Pelanggan
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'NamaAkses' ? 'brown' : '' }};"
                                     class="btnAksesDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'NamaAkses' ? 'brown' : '' }};"
                                     class="btnAksesAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
-                                Keterangan
+                                Total Amount
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'Keterangan' ? 'brown' : '' }};"
                                     class="btnKeteranganDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'Keterangan' ? 'brown' : '' }};"
                                     class="btnKeteranganAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
-                            <th class="p-1 text-center">
-                                Action
-                            </th>
+                            <th class="p-1 text-center">Detail Transaction</th>
+                            <th class="p-1 text-center">Transaction Date</th>
+                            <th class="p-1 text-center">Inserted By</th>
+
                         </tr>
                     </thead>
-                    {{-- <tbody>
+                    <tbody>
                         <?php $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
                         $page = isset($_GET['page']) ? $_GET['page'] : 1;
                         $no = $limit * $page - $limit;
@@ -64,19 +65,27 @@
                         @else
                             @foreach ($data as $item)
                                 <tr>
-                                    <td style="font-size: 14px;" class="p-2">{{ ++$no }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->NamaAkses }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->Keterangan }}</td>
-                                    <td style="font-size: 14px;" class="p-2">
-
+                                    <td style="font-size: 14px;" class="p-2 text-center">{{ ++$no }}</td>
+                                    <td style="font-size: 14px;" class="p-2 text-center">{{ $item->customer_name }}</td>
+                                    <td style="font-size: 14px;" class="p-2 text-center">{{ 'Rp. ' . number_format($item->total_amount, 0, ',', '.') }}</td>
+                                    <td style="font-size: 14px;" class="p-2 text-center"><a data-bs-toggle="modal"
+                                            href="#modalDetail" data-bs-target="#modalDetail"
+                                            class="detail_modal btn btn-sm btn-primary"
+                                            data-id="{{ $item->id_transaction }}">
+                                            Detail
+                                        </a></td>
+                                    <td style="font-size: 14px;" class="p-2 text-center">
+                                        {{ date('d M Y', strtotime($item->transaction_inserted_at)) }}
                                     </td>
+                                    <td style="font-size: 14px;" class="p-2 text-center">{{ $item->first_name }}</td>
+
                                 </tr>
                             @endforeach
                         @endif
-                    </tbody> --}}
+                    </tbody>
                 </table>
             </div>
-            {{-- <div class="row mt-4 mb-4">
+            <div class="row mt-4 mb-4">
                 <div class="col-md-1 align-middle d-flex flex-column align-items-md-start">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -102,8 +111,38 @@
                 <div class="col-md-6 d-flex flex-column align-items-md-end" id="showing_page">
                     {!! $data->appends(request()->all())->links() !!}
                 </div>
-            </div> --}}
+            </div>
 
+        </div>
+    </div>
+    <div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Detail Transaksi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table id="detail_table" class="table table-bordered mt-4">
+                        <thead>
+                            <tr>
+                                <th style="font-size: 12px;">Item Name</th>
+                                <th style="font-size: 12px;">Quantity</th>
+                                <th style="font-size: 12px;">Price</th>
+                                <th style="font-size: 12px;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -127,6 +166,34 @@
         $('.resetBtn').click(function() {
             $('#search').val('');
             $('#search_form').submit();
+        });
+
+        function formatCurrency(value) {
+            return 'Rp ' + String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        $(".detail_modal").click(function() {
+            var id_trans = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: "{{ url('detail-by-transaction/') }}/" + id_trans,
+                success: function(data) {
+                    console.log(data);
+                    $('#detail_table tbody').empty(); // Kosongkan tabel sebelum menambahkan data baru
+                    $.each(data, function(index, element) {
+                        // Membuat baris baru untuk setiap data
+                        var row = "<tr>" +
+                            "<td>" + element.item_name + "</td>" +
+                            "<td>" + element.qty + "</td>" +
+                            "<td>" + formatCurrency(element.price) + "</td>" +
+                            "<td>" + formatCurrency(element.total_price) + "</td>" +
+                            "</tr>";
+
+                        // Menambahkan baris baru ke dalam tabel
+                        $('#detail_table tbody').append(row);
+                    });
+                }
+            });
         });
     </script>
 @endsection

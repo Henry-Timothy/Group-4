@@ -100,10 +100,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item {{ $title == 'Transaksi' ? 'active' : '' }}">
-                        <a href="{{ route('transaksi') }}" class="menu-link">
+                    <li class="menu-item {{ $title == 'Transaction' ? 'active' : '' }}">
+                        <a href="{{ route('transaction') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div>Transaksi</div>
+                            <div>Transaction</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ $title == 'Add Transaction' ? 'active' : '' }}">
+                        <a href="{{ route('page-add-transaction') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div>Add Transaction</div>
                         </a>
                     </li>
 
@@ -197,6 +203,12 @@
                         @endif
                         @if ($title == 'Pengguna')
                             @yield('pengguna')
+                        @endif
+                        @if ($title == 'Transaction')
+                            @yield('transaction')
+                        @endif
+                        @if ($title == 'Add Transaction')
+                            @yield('page-add-transaction')
                         @endif
                     </div>
                     <footer class="content-footer footer bg-footer-theme">

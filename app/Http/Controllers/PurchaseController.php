@@ -77,7 +77,7 @@ class PurchaseController extends Controller
     {
         $data = new Purchase();
         $data->purchase_amount = $request->purchase_amount;
-        $data->purchase_price = $request->purchase_price;
+        $data->purchase_price = str_replace('.', '', $request->purchase_price);
         $data->id_user = $request->Session()->get('id_user');
         $data->id_item = $request->id_item;
         $data->purchase_inserted_at = date('Y-m-d H:i:s');

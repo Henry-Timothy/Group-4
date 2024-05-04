@@ -64,14 +64,14 @@
                                     class="btnDescriptionAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center" style="width: 10%;">
-                                Unit
+                                Stock
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'unit' ? 'brown' : '' }};"
                                     class="btnUnitDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'unit' ? 'brown' : '' }};"
                                     class="btnUnitAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center" style="width: 10%;">
-                                Price
+                              Sell  Price
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'price' ? 'brown' : '' }};"
                                     class="btnPriceDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'price' ? 'brown' : '' }};"
@@ -120,8 +120,7 @@
                                     <td style="font-size: 14px;" class="p-2">{{ $item->description }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->unit }}</td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        {{-- {{ 'Rp. ' . number_format($item->price, 0, ',', '.') }} --}}
-                                        {{ 'Rp. ' . $item->price }}
+                                        {{ 'Rp. ' . number_format($item->price, 0, ',', '.') }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->supplier_name }}</td>
                                     <td style="font-size: 14px;" class="p-2">
@@ -203,15 +202,15 @@
                                     placeholder="Insert description">
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        {{-- <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Unit</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="unit" name="unit"
                                     placeholder="Insert unit">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Price</label>
+                            <label class="col-sm-4 col-form-label">Sell Price</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="price" name="price"
                                     placeholder="Insert price">
@@ -268,15 +267,15 @@
                                     placeholder="Insert description" required>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        {{-- <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Unit</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="edit_unit" name="edit_unit"
                                     placeholder="Insert unit" required>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Price</label>
+                            <label class="col-sm-4 col-form-label">Sell Price</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="edit_price" name="edit_price"
                                     placeholder="Insert price">
@@ -380,16 +379,16 @@
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
-        $('.btnUnitDesc').click(function() {
-            $('#order_name').val('unit');
-            $('#order_type').val('DESC');
-            $('#search_form').submit();
-        });
-        $('.btnUnitAsc').click(function() {
-            $('#order_name').val('unit');
-            $('#order_type').val('ASC');
-            $('#search_form').submit();
-        });
+        // $('.btnUnitDesc').click(function() {
+        //     $('#order_name').val('unit');
+        //     $('#order_type').val('DESC');
+        //     $('#search_form').submit();
+        // });
+        // $('.btnUnitAsc').click(function() {
+        //     $('#order_name').val('unit');
+        //     $('#order_type').val('ASC');
+        //     $('#search_form').submit();
+        // });
         $('.btnPriceDesc').click(function() {
             $('#order_name').val('price');
             $('#order_type').val('DESC');
@@ -445,7 +444,7 @@
                         console.log(response)
                         $('#edit_item_name').val(response.item.item_name)
                         $('#edit_description').val(response.item.description)
-                        $('#edit_unit').val(response.item.unit)
+                        // $('#edit_unit').val(response.item.unit)
                         $('#edit_price').val(response.item.price)
                         $('#edit_id_supplier').val($('#data_id_supplier' + id_item).val())
                             .trigger(

@@ -81,8 +81,8 @@ class ItemController extends Controller
         $data = new Item();
         $data->item_name = $request->item_name;
         $data->description = $request->description;
-        $data->unit = $request->unit;
-        $data->price = $request->price;
+        // $data->unit = $request->unit;
+        $data->price = str_replace('.', '', $request->price);
         $data->id_supplier = $request->id_supplier;
         $data->item_inserted_at = date('Y-m-d H:i:s');
         $data->item_last_updated = date('Y-m-d H:i:s');
@@ -103,8 +103,8 @@ class ItemController extends Controller
         $data = Item::find($request->id_item);
         $data->item_name = $request->edit_item_name;
         $data->description = $request->edit_description;
-        $data->unit = $request->edit_unit;
-        $data->price = $request->edit_price;
+        // $data->unit = $request->edit_unit;
+        $data->price = str_replace('.', '', $request->edit_price);
         $data->id_supplier = $request->edit_id_supplier;
         $data->item_last_updated = date('Y-m-d H:i:s');
 

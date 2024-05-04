@@ -1,38 +1,49 @@
 @extends('template')
 @section('customer')
-    <div class="card">
-        <div class="card-body">
-            <form class="row d-flex" id="search_form" method="GET">
-                <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
-                <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
-                <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomer">
-                            Add New
-                        </button>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Search</label>
-                            <div class="col-sm-9">
-                                <input value="{{ request('search') }}" class="form-control" type="text" name="search"
-                                    id="search" value="" placeholder="Search...">
+    <div class="accordion mb-3" id="accordionExample">
+        <div class="card accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#accordionOne" aria-expanded="false" aria-controls="accordionOne">
+                    Filter
+                </button>
+            </h2>
+            <div id="accordionOne" class="accordion-collapse collapse {{ request('search') ? 'show' : '' }}"
+                data-bs-parent="#accordionExample" style="">
+                <div class="accordion-body">
+                    <form class="row d-flex" id="search_form" method="GET">
+                        <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
+                        <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
+                        <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Search</label>
+                                    <div class="col-sm-9">
+                                        <input value="{{ request('search') }}" class="form-control" type="text"
+                                            name="search" id="search" value="" placeholder="Search...">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
+                            <button class="btn btn-secondary" id="btn_filter" type="submit">
+                                Filter
+                            </button>
+                            <button type="button" class="btn btn-warning resetBtn">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
-                    <button class="btn btn-secondary" id="btn_filter" type="submit">
-                        Filter
-                    </button>
-                    <button type="button" class="btn btn-warning resetBtn">
-                        Reset
-                    </button>
-                </div>
-
-            </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCustomer">
+                Add New
+            </button>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -85,7 +96,7 @@
                         ?>
                         @if ($data->isEmpty())
                             <tr>
-                                <td colspan="5" style="text-align: center">No data</td>
+                                <td colspan="7" style="text-align: center">No data</td>
                             </tr>
                         @else
                             @foreach ($data as $item)
@@ -205,8 +216,8 @@
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Customer Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="edit_customer_name" name="edit_customer_name"
-                                    placeholder="Insert acces name" required>
+                                <input type="text" class="form-control" id="edit_customer_name"
+                                    name="edit_customer_name" placeholder="Insert acces name" required>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -219,8 +230,8 @@
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Phone Number</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="edit_phone_number" name="edit_phone_number"
-                                    placeholder="Insert phone number" required>
+                                <input type="text" class="form-control" id="edit_phone_number"
+                                    name="edit_phone_number" placeholder="Insert phone number" required>
                             </div>
                         </div>
                     </div>

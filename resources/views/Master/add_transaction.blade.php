@@ -1,141 +1,113 @@
 @extends('template')
 @section('page-add-transaction')
-    <style>
-        .select2-selection__rendered {
-            line-height: 31px !important;
-            padding-top: 2px;
-        }
-
-        .select2-container .select2-selection--single {
-            height: 35px !important;
-        }
-
-        .select2-selection__arrow {
-            height: 34px !important;
-        }
-
-        .select2-selection {
-            border: 1px solid #d9dee3 !important;
-        }
-    </style>
-    <div class="card">
-        <div class="card-body">
-
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label">Select Item</label>
-                                <div class="col-md-8">
-                                    <select class="form-select select_item" id="id_item" style="width: 100%"
-                                        onchange="gettingList()">
-                                        <option value=''>Select item</option>
-                                        @foreach ($item as $item)
-                                            <option value="{{ $item->id_item }}">{{ $item->item_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span id="stock" class="form-text" style="color: maroon;"></span>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label">Quantity</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="qty" placeholder="Input Quantity"
-                                        onchange="total()" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label">Price / Item</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="price_item" readonly />
-                                    <input type="hidden" name="price_asli" id="price_asli">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label">Total</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="total_nominal" readonly />
-                                    <input type="hidden" id="total_nominal_asli" name="total_nominal_asli" readonly />
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <a class="btn btn-primary" id="add_item" style="color: white">
-                                    <span class="fas fa-plus"></span>Add</a>
-                            </div>
-
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <label class="col-md-4 col-form-label">Select Item</label>
+                        <div class="col-md-8">
+                            <select class="form-select select_item" id="id_item" style="width: 100%"
+                                onchange="gettingList()">
+                                <option value=''>Select item</option>
+                                @foreach ($item as $item)
+                                    <option value="{{ $item->id_item }}">{{ $item->item_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <span id="stock" class="form-text" style="color: maroon;"></span>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <label class="col-md-4 col-form-label">Select Customer</label>
-                                <div class="col-md-8 mb-3">
-                                    <select class="form-select select_customer" style="width:48%" id="id_customer">
-                                        <option value=''>Select Customer</option>
-                                        @foreach ($customer as $cust)
-                                            <option value="{{ $cust->id_customer }}">{{ $cust->customer_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <div id="item_alert" class="form-text" style="color: maroon;">Please select item!
-                                    </div>
-                                </div>
-                                <table class="table table-hover" >
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Item</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Total</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-border-bottom-0">
-                                        <?php $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
-                                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                                        $no = $limit * $page - $limit;
-                                        ?>
-                                        @foreach ($detail_trans as $it)
-                                            <tr>
-                                                <td style="font-size: 14px;" class="p-2 text-center">{{ ++$no }}
-                                                </td>
-                                                <td style="font-size: 14px;" class="p-2 text-center">
-                                                    {{ $it->item_name }}</td>
-                                                <td style="font-size: 14px;" class="p-2 text-center">
-                                                    {{ $it->qty }}</td>
-                                                <td style="font-size: 14px;" class="p-2 text-center">
-                                                    {{ 'Rp. ' . number_format($it->price, 0, ',', '.') }}</td>
-                                                <td style="font-size: 14px;" class="p-2 text-center">
-                                                    {{ 'Rp. ' . number_format($it->total_price, 0, ',', '.') }}</td>
-                                                <td>
-                                                    <button onclick="delete_det_trans('{{ $it->id_detail_transaction }}')"
-                                                        type="button" class="btn rounded-pill btn-icon btn-danger">
-                                                        <span class="fas fa-trash-alt fa-2xs"></span>
-                                                    </button>
-
-
-                                                </td>
-
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="row mb-3">
+                        <label class="col-md-4 col-form-label">Quantity</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="qty" placeholder="Input Quantity"
+                                onchange="total()" />
                         </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-4 col-form-label">Price / Item</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="price_item" readonly />
+                            <input type="hidden" name="price_asli" id="price_asli">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-4 col-form-label">Total</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="total_nominal" readonly />
+                            <input type="hidden" id="total_nominal_asli" name="total_nominal_asli" readonly />
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a class="btn btn-primary" id="add_item" style="color: white">
+                            <span class="fas fa-plus"></span>Add</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal-footer mt-4">
-            {{-- <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                Cancel
-            </button> --}}
+        <div class="col-md-8">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <label class="col-md-4 col-form-label">Select Customer</label>
+                        <div class="col-md-8 mb-3">
+                            <select class="form-select select_customer" style="width:48%" id="id_customer">
+                                <option value=''>Select Customer</option>
+                                @foreach ($customer as $cust)
+                                    <option value="{{ $cust->id_customer }}">{{ $cust->customer_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <div id="item_alert" class="form-text" style="color: maroon;">Please select item!
+                            </div>
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Item</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                <?php $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
+                                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                $no = $limit * $page - $limit;
+                                ?>
+                                @foreach ($detail_trans as $it)
+                                    <tr>
+                                        <td style="font-size: 14px;" class="text-center">{{ ++$no }}
+                                        </td>
+                                        <td style="font-size: 14px;" class="text-center">
+                                            {{ $it->item_name }}</td>
+                                        <td style="font-size: 14px;" class="text-center">
+                                            {{ $it->qty }}</td>
+                                        <td style="font-size: 14px;" class="text-center">
+                                            {{ 'Rp. ' . number_format($it->price, 0, ',', '.') }}
+                                        <td style="font-size: 14px;" class="text-center">
+                                            {{ 'Rp. ' . number_format($it->total_price, 0, ',', '.') }}</td>
+                                        <td>
+                                            <button onclick="delete_det_trans('{{ $it->id_detail_transaction }}')"
+                                                type="button" class="btn rounded-pill btn-icon btn-danger">
+                                                <span class="fas fa-trash-alt fa-2xs"></span>
+                                            </button>
+
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
             <button type="submit" onclick="save()" class="btn btn-primary">
                 Save
             </button>

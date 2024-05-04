@@ -1,38 +1,49 @@
 @extends('template')
 @section('supplier')
-    <div class="card">
-        <div class="card-body">
-            <form class="row d-flex" id="search_form" method="GET">
-                <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
-                <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
-                <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplier">
-                            Add New
-                        </button>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Search</label>
-                            <div class="col-sm-9">
-                                <input value="{{ request('search') }}" class="form-control" type="text" name="search"
-                                    id="search" value="" placeholder="Search...">
+    <div class="accordion mb-3" id="accordionExample">
+        <div class="card accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#accordionOne" aria-expanded="false" aria-controls="accordionOne">
+                    Filter
+                </button>
+            </h2>
+            <div id="accordionOne" class="accordion-collapse collapse {{ request('search') ? 'show' : '' }}"
+                data-bs-parent="#accordionExample" style="">
+                <div class="accordion-body">
+                    <form class="row d-flex" id="search_form" method="GET">
+                        <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
+                        <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
+                        <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Search</label>
+                                    <div class="col-sm-9">
+                                        <input value="{{ request('search') }}" class="form-control" type="text"
+                                            name="search" id="search" value="" placeholder="Search...">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
+                            <button class="btn btn-secondary" id="btn_filter" type="submit">
+                                Filter
+                            </button>
+                            <button type="button" class="btn btn-warning resetBtn">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
-                    <button class="btn btn-secondary" id="btn_filter" type="submit">
-                        Filter
-                    </button>
-                    <button type="button" class="btn btn-warning resetBtn">
-                        Reset
-                    </button>
-                </div>
-
-            </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addSupplier">
+                Add New
+            </button>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>

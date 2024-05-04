@@ -30,8 +30,8 @@
     <style>
         .btn-icon {
             padding: 0;
-            width: calc(1.709375rem + 2px);
-            height: calc(1.709375rem + 2px);
+            width: calc(1.509375rem + 2px);
+            height: calc(1.509375rem + 2px);
             display: inline-flex;
             flex-shrink: 0;
             justify-content: center;
@@ -118,19 +118,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item {{ $title == 'Transaction' ? 'active' : '' }}">
+                    <li class="menu-item {{ $title == 'Transaction' || $title == 'Add Transaction' ? 'active' : '' }}">
                         <a href="{{ route('transaction') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <i class="menu-icon tf-icons bx bx-archive-out"></i>
                             <div>Transaction</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ $title == 'Add Transaction' ? 'active' : '' }}">
-                        <a href="{{ route('page-add-transaction') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div>Add Transaction</div>
-                        </a>
-                    </li>
-
                 </ul>
             </aside>
             <div class="layout-page">

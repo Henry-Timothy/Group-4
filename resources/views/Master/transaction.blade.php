@@ -1,54 +1,78 @@
 @extends('template')
 @section('transaction')
-    <div class="card">
-        <div class="card-body">
-            <form class="row d-flex" id="search_form" method="GET">
-                <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
-                <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
-                <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Search</label>
-                            <div class="col-sm-9">
-                                <input value="{{ request('search') }}" class="form-control" type="text" name="search"
-                                    id="search" value="" placeholder="Search...">
+    <div class="accordion mb-3" id="accordionExample">
+        <div class="card accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#accordionOne" aria-expanded="false" aria-controls="accordionOne">
+                    Filter
+                </button>
+            </h2>
+            <div id="accordionOne" class="accordion-collapse collapse {{ request('search') ? 'show' : '' }}"
+                data-bs-parent="#accordionExample" style="">
+                <div class="accordion-body">
+                    <form class="row d-flex" id="search_form" method="GET">
+                        <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
+                        <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
+                        <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Search</label>
+                                    <div class="col-sm-9">
+                                        <input value="{{ request('search') }}" class="form-control" type="text"
+                                            name="search" id="search" value="" placeholder="Search...">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
+                            <button class="btn btn-secondary" id="btn_filter" type="submit">
+                                Filter
+                            </button>
+                            <button type="button" class="btn btn-warning resetBtn">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
-                    <button class="btn btn-secondary" id="btn_filter" type="submit">
-                        Filter
-                    </button>
-                    <button type="button" class="btn btn-warning resetBtn">
-                        Reset
-                    </button>
-                </div>
-
-            </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <a href="{{ route('page-add-transaction') }}">
+                <button type="button" class="btn btn-primary mb-3">
+                    Add Transaction
+                </button>
+            </a>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-active">
                             <th class="p-1 text-center">No</th>
                             <th class="p-1 text-center">
-                                Nama Pelanggan
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'NamaAkses' ? 'brown' : '' }};"
-                                    class="btnAksesDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'NamaAkses' ? 'brown' : '' }};"
-                                    class="btnAksesAsc fas fa-arrow-alt-circle-down"></a>
+                                Customer Name
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'customer_name' ? 'brown' : '' }};"
+                                    class="btnCustomerDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'customer_name' ? 'brown' : '' }};"
+                                    class="btnCustomerAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Total Amount
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'Keterangan' ? 'brown' : '' }};"
-                                    class="btnKeteranganDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'Keterangan' ? 'brown' : '' }};"
-                                    class="btnKeteranganAsc fas fa-arrow-alt-circle-down"></a>
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'total_amount' ? 'brown' : '' }};"
+                                    class="btnAmountDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'total_amount' ? 'brown' : '' }};"
+                                    class="btnAmountAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">Detail Transaction</th>
-                            <th class="p-1 text-center">Transaction Date</th>
+                            <th class="p-1 text-center">
+                                Transaction Date
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'transaction_inserted_at' ? 'brown' : '' }};"
+                                    class="btnInsertDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'transaction_inserted_at' ? 'brown' : '' }};"
+                                    class="btnInsertAsc fas fa-arrow-alt-circle-down"></a>
+                            </th>
                             <th class="p-1 text-center">Inserted By</th>
 
                         </tr>
@@ -67,7 +91,8 @@
                                 <tr>
                                     <td style="font-size: 14px;" class="p-2 text-center">{{ ++$no }}</td>
                                     <td style="font-size: 14px;" class="p-2 text-center">{{ $item->customer_name }}</td>
-                                    <td style="font-size: 14px;" class="p-2 text-center">{{ 'Rp. ' . number_format($item->total_amount, 0, ',', '.') }}</td>
+                                    <td style="font-size: 14px;" class="p-2 text-center">
+                                        {{ 'Rp. ' . number_format($item->total_amount, 0, ',', '.') }}</td>
                                     <td style="font-size: 14px;" class="p-2 text-center"><a data-bs-toggle="modal"
                                             href="#modalDetail" data-bs-target="#modalDetail"
                                             class="detail_modal btn btn-sm btn-primary"
@@ -85,7 +110,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row mt-4 mb-4">
+            <div class="row mt-4">
                 <div class="col-md-1 align-middle d-flex flex-column align-items-md-start">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -158,13 +183,43 @@
             $('#search_form').submit();
         });
         $(".listAttr").click(function() {
-            // console.log("haloo");
             var nValue = $(this).val();
             $('#sortir').val(nValue);
             submitFilter(nValue);
         });
         $('.resetBtn').click(function() {
             $('#search').val('');
+            $('#accordionExample').val('');
+            $('#search_form').submit();
+        });
+        $('.btnCustomerDesc').click(function() {
+            $('#order_name').val('customer_name');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnCustomerAsc').click(function() {
+            $('#order_name').val('customer_name');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnAmountDesc').click(function() {
+            $('#order_name').val('total_amount');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnAmountAsc').click(function() {
+            $('#order_name').val('total_amount');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnInsertDesc').click(function() {
+            $('#order_name').val('transaction_inserted_at');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnInsertAsc').click(function() {
+            $('#order_name').val('transaction_inserted_at');
+            $('#order_type').val('ASC');
             $('#search_form').submit();
         });
 

@@ -1,86 +1,119 @@
 @extends('template')
 @section('item')
+    <div class="accordion mb-3" id="accordionExample">
+        <div class="card accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#accordionOne" aria-expanded="false" aria-controls="accordionOne">
+                    Filter
+                </button>
+            </h2>
+            <div id="accordionOne" class="accordion-collapse collapse {{ request('search') ? 'show' : '' }}"
+                data-bs-parent="#accordionExample" style="">
+                <div class="accordion-body">
+                    <form class="row d-flex" id="search_form" method="GET">
+                        <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
+                        <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
+                        <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Search</label>
+                                    <div class="col-sm-9">
+                                        <input value="{{ request('search') }}" class="form-control" type="text"
+                                            name="search" id="search" value="" placeholder="Search...">
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Supplier</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select filter_supplier" id="id_supplier" name="id_supplier"
+                                            style="width: 100% ! important;">
+                                            <option hidden value="">Select Supplier</option>
+                                            @foreach ($supplier as $data)
+                                                <option value="{{ request('id_supplier') }}">
+                                                    {{ $data->supplier_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
+                            <button class="btn btn-secondary" id="btn_filter" type="submit">
+                                Filter
+                            </button>
+                            <button type="button" class="btn btn-warning resetBtn">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
-            <form class="row d-flex" id="search_form" method="GET">
-                <input type="hidden" name="sortir" id="sortir" value="{{ request('sortir') }}">
-                <input type="hidden" name="order_name" id="order_name" value="{{ request('order_name') }}">
-                <input type="hidden" name="order_type" id="order_type" value="{{ request('order_type') }}">
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItem">
-                            Add New
-                        </button>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Search</label>
-                            <div class="col-sm-9">
-                                <input value="{{ request('search') }}" class="form-control" type="text" name="search"
-                                    id="search" value="" placeholder="Search...">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-3">
-                    <button class="btn btn-secondary" id="btn_filter" type="submit">
-                        Filter
-                    </button>
-                    <button type="button" class="btn btn-warning resetBtn">
-                        Reset
-                    </button>
-                </div>
-
-            </form>
+            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addItem">
+                Add New
+            </button>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-active">
-                            <th class="p-1 text-center">No</th>
-                            <th class="p-1 text-center">
+                            <th class="p-1 text-center" style="width: 5%;">No</th>
+                            <th class="p-1 text-center" style="width: 15%;">
                                 Item Name
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'item_name' ? 'brown' : '' }};"
                                     class="btnItemDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'item_name' ? 'brown' : '' }};"
                                     class="btnItemAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
-                            <th class="p-1 text-center">
+                            <th class="p-1 text-center" style="width: 10%;">
                                 Description
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'description' ? 'brown' : '' }};"
                                     class="btnDescriptionDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'description' ? 'brown' : '' }};"
                                     class="btnDescriptionAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
-                            <th class="p-1 text-center">
+                            <th class="p-1 text-center" style="width: 10%;">
                                 Unit
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'unit' ? 'brown' : '' }};"
                                     class="btnUnitDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'unit' ? 'brown' : '' }};"
                                     class="btnUnitAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
-                            <th class="p-1 text-center">
-                                Unit
+                            <th class="p-1 text-center" style="width: 10%;">
+                                Price
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'price' ? 'brown' : '' }};"
                                     class="btnPriceDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'price' ? 'brown' : '' }};"
                                     class="btnPriceAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
-                            <th class="p-1 text-center">
+                            <th class="p-1 text-center" style="width: 15%;">
+                                Supplier
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'id_supplier' ? 'brown' : '' }};"
+                                    class="btnSupplierDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'id_supplier' ? 'brown' : '' }};"
+                                    class="btnSupplierAsc fas fa-arrow-alt-circle-down"></a>
+                            </th>
+                            <th class="p-1 text-center" style="width: 10%;">
                                 Inserted At
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'item_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'item_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
-                            <th class="p-1 text-center">
+                            <th class="p-1 text-center" style="width: 10%;">
                                 Updated At
                                 <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'item_last_updated' ? 'brown' : '' }};"
                                     class="btnUpdatedDesc fas fa-arrow-alt-circle-up"></a>
                                 <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'item_last_updated' ? 'brown' : '' }};"
                                     class="btnUpdatedAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
-                            <th class="p-1 text-center">
+                            <th class="p-1 text-center" style="width: 10%;">
                                 Action
                             </th>
                         </tr>
@@ -92,7 +125,7 @@
                         ?>
                         @if ($data->isEmpty())
                             <tr>
-                                <td colspan="7" style="text-align: center">No data</td>
+                                <td colspan="9" style="text-align: center">No data</td>
                             </tr>
                         @else
                             @foreach ($data as $item)
@@ -102,6 +135,7 @@
                                     <td style="font-size: 14px;" class="p-2">{{ $item->description }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->unit }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->price }}</td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->supplier_name }}</td>
                                     <td style="font-size: 14px;" class="p-2">
                                         {{ date('d F Y h:i:s', strtotime($item->item_inserted_at)) }}
                                     </td>
@@ -119,6 +153,8 @@
                                         </button>
                                     </td>
                                 </tr>
+                                <input type="hidden" id="data_id_supplier<?= $item->id_item ?>"
+                                    value="<?= $item->id_supplier ?>">
                             @endforeach
                         @endif
                     </tbody>
@@ -193,6 +229,19 @@
                                     placeholder="Insert price">
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Supplier</label>
+                            <div class="col-sm-8">
+                                <select class="form-select id_supplier" id="id_supplier" name="id_supplier"
+                                    style="width: 100% ! important;">
+                                    <option hidden value="">Select Supplier</option>
+                                    @foreach ($supplier as $data)
+                                        <option value="{{ $data->id_supplier }}">
+                                            {{ $data->supplier_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -243,6 +292,22 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="edit_price" name="edit_price"
                                     placeholder="Insert price">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Supplier</label>
+                            <div class="col-sm-8">
+                                <select class="form-select edit_id_supplier" id="edit_id_supplier"
+                                    name="edit_id_supplier" style="width: 100% ! important;" value="">
+                                    <option hidden value="">Select Supplier</option>
+                                    <?php
+                                    ?>
+                                    @foreach ($supplier as $data)
+                                        <option value="{{ $data->id_supplier }}"
+                                            {{ $data->id_supplier == $data->id_supplier ? 'selected' : '' }}>
+                                            {{ $data->supplier_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -338,12 +403,22 @@
             $('#search_form').submit();
         });
         $('.btnPriceDesc').click(function() {
-            $('#order_name').val('Price');
+            $('#order_name').val('price');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnPriceAsc').click(function() {
-            $('#order_name').val('Price');
+            $('#order_name').val('price');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnSupplierDesc').click(function() {
+            $('#order_name').val('id_supplier');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnSeupplierAsc').click(function() {
+            $('#order_name').val('id_supplier');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
@@ -384,6 +459,9 @@
                         $('#edit_description').val(response.item.description)
                         $('#edit_unit').val(response.item.unit)
                         $('#edit_price').val(response.item.price)
+                        $('#edit_id_supplier').val($('#data_id_supplier' + id_item).val())
+                            .trigger(
+                                "change");
                         $('#id_item').val(response.item.id_item)
                     }
                 })
@@ -410,6 +488,23 @@
                     }
                 })
             })
+        });
+
+        $(document).ready(function() {
+            $('.id_supplier').select2({
+                placeholder: 'Select Supplier',
+                dropdownParent: $("#addItem")
+
+            });
+            $('.edit_id_supplier').select2({
+                placeholder: 'Select Supplier',
+                dropdownParent: $("#editItem")
+
+            });
+            $('.filter_supplier').select2({
+                placeholder: 'Select Supplier',
+
+            });
         });
     </script>
 @endsection

@@ -37,14 +37,23 @@ class ItemController extends Controller
                 $sortir = $request->sortir;
             }
 
+            $supplier = DB::table('punya_farrel.tb_supplier')
+                ->where('supplier_softdel', 0)
+                ->get();
+
             $search = $request->search;
 
             $data = DB::table('punya_farrel.tb_item')
-                ->select('tb_item.*')
+                ->select('tb_item.*', 'tb_supplier.supplier_name')
+                ->leftJoin('punya_farrel.tb_supplier', 'tb_supplier.id_supplier', 'tb_item.id_supplier')
                 ->where('item_softdel', 0);
 
             if ($request->search) {
                 $data->where(DB::raw("CONCAT(`item_name`,' ',`description`)"), 'like', '%' . $search . '%');
+            }
+
+            if ($request->id_supplier) {
+                $data->where('id_supplier', $request->id_supplier);
             }
 
             if ($request->order_name == '') {
@@ -59,6 +68,7 @@ class ItemController extends Controller
 
             return view('Master.item', $user, [
                 'title' => 'Item',
+                'supplier' => $supplier,
                 'data' => $data->paginate($sortir)
             ]);
         } else {
@@ -73,6 +83,7 @@ class ItemController extends Controller
         $data->description = $request->description;
         $data->unit = $request->unit;
         $data->price = $request->price;
+        $data->id_supplier = $request->id_supplier;
         $data->item_inserted_at = date('Y-m-d H:i:s');
         $data->item_last_updated = date('Y-m-d H:i:s');
         $data->item_softdel = 0;
@@ -94,6 +105,7 @@ class ItemController extends Controller
         $data->description = $request->edit_description;
         $data->unit = $request->edit_unit;
         $data->price = $request->edit_price;
+        $data->id_supplier = $request->edit_id_supplier;
         $data->item_last_updated = date('Y-m-d H:i:s');
 
         $data->save();

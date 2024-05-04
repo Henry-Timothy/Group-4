@@ -113,7 +113,7 @@
                                         {{ 'Rp. ' . number_format(str_replace('.', '', $item->purchase_price) / $item->purchase_amount, 0, ',', '.') }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        {{ 'Rp. ' . $item->purchase_price }}
+                                        {{ 'Rp. ' . number_format(str_replace('.', '', $item->purchase_price), 0, ',', '.') }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">
                                         {{ date('d F Y h:i:s', strtotime($item->purchase_inserted_at)) }}
@@ -183,9 +183,12 @@
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Purchase Amount</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <input type="number" class="form-control" id="purchase_amount" name="purchase_amount"
                                     placeholder="Insert purchase amount" required>
+                            </div>
+                            <div class="col-sm-2">
+                                pcs
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -261,7 +264,7 @@
 
         $(document).ready(function() {
             $('.id_item').select2({
-                placeholder: 'Select Acces',
+                placeholder: 'Select Item',
                 dropdownParent: $("#addPurchase")
 
             });

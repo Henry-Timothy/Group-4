@@ -91,7 +91,7 @@ class TransactionController extends Controller
             ];
 
             $item = DB::table('tb_item')->where('item_softdel', 0)->get();
-            $customer = DB::table('tb_customer')->get();
+            $customer = DB::table('tb_customer')->where('customer_softdel', 0)->get();
 
             $detail_trans = DB::table('tb_detail_transaction')
                 ->join('tb_item', 'tb_item.id_item', '=', 'tb_detail_transaction.id_item')

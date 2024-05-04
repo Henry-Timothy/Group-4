@@ -205,6 +205,7 @@
                         @endif
                         @if ($title == 'User')
                             @yield('user')
+                        @endif
                         @if ($title == 'Transaction')
                             @yield('transaction')
                         @endif

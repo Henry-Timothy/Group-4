@@ -85,7 +85,7 @@
                                     <div id="item_alert" class="form-text" style="color: maroon;">Please select item!
                                     </div>
                                 </div>
-                                <table class="table table-hover" id="detail_table">
+                                <table class="table table-hover" >
                                     <thead>
                                         <tr>
                                             <th>No</th>

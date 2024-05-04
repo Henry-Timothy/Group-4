@@ -86,12 +86,14 @@
                 </div>
                 <div class="menu-inner-shadow"></div>
                 <ul class="menu-inner py-1">
-                    <li class="menu-item {{ $title == 'Dashboard' ? 'active' : '' }}">
-                        <a href="{{ route('dashboard') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div>Dashboard</div>
-                        </a>
-                    </li>
+                    @if (session('id_acces') == 1 || session('id_acces') == 2)
+                        <li class="menu-item {{ $title == 'Dashboard' ? 'active' : '' }}">
+                            <a href="{{ route('dashboard') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                                <div>Dashboard</div>
+                            </a>
+                        </li>
+                    @endif
 
                     <!-- Master -->
                     <li
@@ -101,11 +103,13 @@
                             <div>Master</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item {{ $title == 'Acces' ? 'active' : '' }}">
-                                <a href="{{ route('acces') }}" class="menu-link">
-                                    <div>Acces</div>
-                                </a>
-                            </li>
+                            @if (session('id_acces') == 1)
+                                <li class="menu-item {{ $title == 'Acces' ? 'active' : '' }}">
+                                    <a href="{{ route('acces') }}" class="menu-link">
+                                        <div>Acces</div>
+                                    </a>
+                                </li>
+                            @endif
                             <li class="menu-item {{ $title == 'Customer' ? 'active' : '' }}">
                                 <a href="{{ route('customer') }}" class="menu-link">
                                     <div>Customer</div>
@@ -116,16 +120,20 @@
                                     <div>Item</div>
                                 </a>
                             </li>
-                            <li class="menu-item {{ $title == 'Supplier' ? 'active' : '' }}">
-                                <a href="{{ route('supplier') }}" class="menu-link">
-                                    <div>Supplier</div>
-                                </a>
-                            </li>
-                            <li class="menu-item {{ $title == 'User' ? 'active' : '' }}">
-                                <a href="{{ route('user') }}" class="menu-link">
-                                    <div>User</div>
-                                </a>
-                            </li>
+                            @if (session('id_acces') == 1)
+                                <li class="menu-item {{ $title == 'Supplier' ? 'active' : '' }}">
+                                    <a href="{{ route('supplier') }}" class="menu-link">
+                                        <div>Supplier</div>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (session('id_acces') == 1)
+                                <li class="menu-item {{ $title == 'User' ? 'active' : '' }}">
+                                    <a href="{{ route('user') }}" class="menu-link">
+                                        <div>User</div>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                     <li class="menu-item {{ $title == 'Transaction' || $title == 'Add Transaction' ? 'active' : '' }}">

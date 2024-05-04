@@ -212,12 +212,6 @@
                         @if ($title == 'Add Transaction')
                             @yield('page-add-transaction')
                         @endif
-                        @if ($title == 'Transaction')
-                            @yield('transaction')
-                        @endif
-                        @if ($title == 'Add Transaction')
-                            @yield('page-add-transaction')
-                        @endif
                     </div>
                     <footer class="content-footer footer bg-footer-theme">
                         <div

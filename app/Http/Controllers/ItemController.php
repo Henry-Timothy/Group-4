@@ -106,7 +106,7 @@ class ItemController extends Controller
 
     public function delete_item(Request $request)
     {
-        $data = Acces::find($request->id_item_delete);
+        $data = Item::find($request->id_item_delete);
         $data->item_softdel = 1;
 
         $data->save();

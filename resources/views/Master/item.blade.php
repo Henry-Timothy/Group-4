@@ -116,7 +116,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row mt-4 mb-4">
+            <div class="row mt-4">
                 <div class="col-md-1 align-middle d-flex flex-column align-items-md-start">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -206,21 +206,21 @@
                             <label class="col-sm-4 col-form-label">Item Name</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="edit_item_name" name="edit_item_name"
-                                    placeholder="Insert item name">
+                                    placeholder="Insert item name" required>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Description</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="edit_description" name="edit_description"
-                                    placeholder="Insert description">
+                                    placeholder="Insert description" required>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Unit</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="edit_unit" name="edit_unit"
-                                    placeholder="Insert unit">
+                                    placeholder="Insert unit" required>
                             </div>
                         </div>
                     </div>
@@ -285,33 +285,53 @@
             $('#order_type').val('');
             $('#search_form').submit();
         });
-        $('.btnAccesDesc').click(function() {
-            $('#order_name').val('acces_name');
+        $('.btnItemDesc').click(function() {
+            $('#order_name').val('item_name');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
-        $('.btnAccesAsc').click(function() {
-            $('#order_name').val('acces_name');
+        $('.btnItemAsc').click(function() {
+            $('#order_name').val('item_name');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnDescriptionDesc').click(function() {
+            $('#order_name').val('description');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnDescriptionAsc').click(function() {
+            $('#order_name').val('description');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnUnitDesc').click(function() {
+            $('#order_name').val('unit');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnUnitAsc').click(function() {
+            $('#order_name').val('unit');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnInsertDesc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('item_inserted_at');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnInsertAsc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('item_inserted_at');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnUpdatedDesc').click(function() {
-            $('#order_name').val('acces_last_updated');
+            $('#order_name').val('item_last_updated');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnUpdatedAsc').click(function() {
-            $('#order_name').val('acces_last_updated');
+            $('#order_name').val('item_last_updated');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });

@@ -100,7 +100,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row mt-4 mb-4">
+            <div class="row mt-4">
                 <div class="col-md-1 align-middle d-flex flex-column align-items-md-start">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"

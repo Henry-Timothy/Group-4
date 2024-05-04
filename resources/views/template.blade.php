@@ -37,6 +37,24 @@
             justify-content: center;
             align-items: center;
         }
+
+        .select2-selection__rendered {
+            line-height: 31px !important;
+            padding-top: 2px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 39px !important;
+            border-radius: 6px;
+        }
+
+        .select2-selection__arrow {
+            height: 34px !important;
+        }
+
+        .select2-selection {
+            border: 1px solid #d9dee3 !important;
+        }
     </style>
 </head>
 
@@ -67,7 +85,7 @@
 
                     <!-- Master -->
                     <li
-                        class="menu-item {{ $title == 'Acces' || $title == 'Item' || $title == 'Pengguna' ? 'active open' : '' }}">
+                        class="menu-item {{ $title == 'Acces' || $title == 'Item' || $title == 'User' ? 'active open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                             <div>Master</div>
@@ -83,9 +101,9 @@
                                     <div>Item</div>
                                 </a>
                             </li>
-                            <li class="menu-item {{ $title == 'Pengguna' ? 'active' : '' }}">
-                                <a href="{{ route('pengguna') }}" class="menu-link">
-                                    <div>Pengguna</div>
+                            <li class="menu-item {{ $title == 'User' ? 'active' : '' }}">
+                                <a href="{{ route('user') }}" class="menu-link">
+                                    <div>User</div>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -132,35 +150,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-semibold d-block">{{ $user->first_name }}
+                                                        {{ $user->last_name }}</span>
+                                                    <small class="text-muted">{{ $user->acces_name }}</small>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bx bx-user me-2"></i>
-                                            <span class="align-middle">My Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bx bx-cog me-2"></i>
-                                            <span class="align-middle">Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="d-flex align-items-center align-middle">
-                                                <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                                <span class="flex-grow-1 align-middle">Billing</span>
-                                                <span
-                                                    class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                            </span>
                                         </a>
                                     </li>
                                     <li>
@@ -189,8 +183,8 @@
                         @if ($title == 'Item')
                             @yield('item')
                         @endif
-                        @if ($title == 'Pengguna')
-                            @yield('pengguna')
+                        @if ($title == 'User')
+                            @yield('user')
                         @endif
                     </div>
                     <footer class="content-footer footer bg-footer-theme">
@@ -251,7 +245,7 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

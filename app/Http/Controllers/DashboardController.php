@@ -31,7 +31,7 @@ class DashboardController extends Controller
                 'user' => $this->get_id_user($request),
             ];
 
-            $data = DB::table('tb_item')
+            $data_item = DB::table('tb_item')
                 ->join('tb_detail_transaction', 'tb_detail_transaction.id_item', '=', 'tb_item.id_item')
                 ->join('tb_purchase', 'tb_purchase.id_item', '=', 'tb_detail_transaction.id_item')
                 ->select(
@@ -49,7 +49,7 @@ class DashboardController extends Controller
                 ->get();
 
             return view('Dashboard.dashboard', $data, [
-                'data' => $data,
+                'data_item' => $data_item,
                 'title' => 'Dashboard',
             ]);
         } else {

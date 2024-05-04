@@ -84,22 +84,22 @@
                 $total_harga_terjual = DB::table('tb_detail_transaction')
                     ->where('id_item', $data->id_item)
                     ->sum('total_price');
-                
+
                 $harga_beli = DB::table('tb_purchase')
                     ->where('id_item', $data->id_item)
                     ->sum('purchase_price');
                 $total_harga_beli = DB::table('tb_purchase')
                     ->where('id_item', $data->id_item)
                     ->sum('purchase_amount');
-                
+
                 $harga_beli_perbiji = $harga_beli / $total_harga_beli;
-                
+
                 $total_harga_beli = $harga_beli_perbiji * $total_terjual;
-                
-                // $untung = $total_harga_terjual - $total_harga_beli;
-                
+
+                $untung = $total_harga_terjual - $total_harga_beli;
+
                 // echo $untung;
-                
+
                 $item_name = DB::table('tb_item')
                     ->where('id_item', $data->id_item)
                     ->first();
@@ -112,6 +112,61 @@
             </tr>
         </tbody>
     </table>
+    <div id="container" class="mt-3"></div>
+    <div class="card">
+        <div class="d-flex align-items-end row">
+            <div class="col-sm-7">
+                <div class="card-body">
+                    <h5>
+                        Profit and Loss on All Sales by Item </h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Selling Quantity</th>
+                                <th>Purchase</th>
+                                <th>Selling</th>
+                                <th>Calculate</th>
+                                <th>Profit</th>
+                                <th>Lost</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            <?php $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
+                                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                $no = $limit * $page - $limit;
+                                ?>
+                            @if ($data_item->isEmpty())
+                                <tr>
+                                    <td colspan="6" style="text-align: center">No data</td>
+                                </tr>
+                            @else
+                                @foreach ($data_item as $item)
+                                    <tr>
+                                        <td>{{ ++$no }}</td>
+                                        <td>{{ $item->selling_qty }}</td>
+                                        <td>{{ 'Rp. ' . number_format($item->total_purchase_price, 0, ',', '.') }}</td>
+                                        <td>{{ 'Rp. ' . number_format($item->total_selling_price, 0, ',', '.') }}</td>
+                                        <td>{{  number_format($item->calculate, 0, ',', '.') }}</td>
+                                        <?php
+                                            if ($item->calculate > 0) {?>
+                                                <td> {{ abs($item->calculate) }}</td>
+                                                <td>-</td>
+                                        <?php } else { ?>
+                                            <td>-</td>
+                                                <td> {{ $item->calculate }}</td>
+                                        <?php } ?>
+                                    </tr>
+                                @endforeach
+
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>

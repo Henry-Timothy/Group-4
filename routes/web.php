@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -41,8 +42,19 @@ Route::post('item/edit_item', [ItemController::class, 'edit_item'])->name('item/
 Route::post('item/delete_item', [ItemController::class, 'delete_item'])->name('item/delete_item');
 Route::get('/get_id_item/{id}', [ItemController::class, 'get_id_item'])->name('get_id_item/{id}');
 
-// Pengguna
-Route::get('/pengguna', [PenggunaController::class, 'pengguna'])->name('pengguna');
+// User
+Route::get('/user', [UserController::class, 'user'])->name('user');
+Route::post('user/add_user', [UserController::class, 'add_user'])->name('user/add_user');
+Route::post('user/edit_user', [UserController::class, 'edit_user'])->name('user/edit_user');
+Route::post('user/delete_user', [UserController::class, 'delete_user'])->name('user/delete_user');
+Route::get('/detail_user/{id}', [UserController::class, 'detail_user'])->name('detail_user/{id}');
+
+// Customer
+Route::get('/customer', [CustomerController::class, 'customer'])->name('customer');
+Route::post('customer/add_customer', [CustomerController::class, 'add_customer'])->name('customer/add_customer');
+Route::post('customer/edit_customer', [CustomerController::class, 'edit_customer'])->name('customer/edit_customer');
+Route::post('customer/delete_customer', [CustomerController::class, 'delete_customer'])->name('customer/delete_customer');
+Route::get('/get_id_customer/{id}', [CustomerController::class, 'get_id_customer'])->name('get_id_customer/{id}');
 
 
 // Transaction

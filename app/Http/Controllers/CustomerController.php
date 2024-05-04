@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Item;
+use App\Models\Customer;
 
-class ItemController extends Controller
+class CustomerController extends Controller
 {
     public function __construct()
     {
@@ -24,7 +24,7 @@ class ItemController extends Controller
         return $user;
     }
 
-    public function item(Request $request)
+    public function customer(Request $request)
     {
         if ($request->Session()->get('logged_in') == true) {
 
@@ -39,16 +39,16 @@ class ItemController extends Controller
 
             $search = $request->search;
 
-            $data = DB::table('punya_farrel.tb_item')
-                ->select('tb_item.*')
-                ->where('item_softdel', 0);
+            $data = DB::table('punya_farrel.tb_customer')
+                ->select('tb_customer.*')
+                ->where('customer_softdel', 0);
 
             if ($request->search) {
-                $data->where(DB::raw("CONCAT(`item_name`,' ',`description`)"), 'like', '%' . $search . '%');
+                $data->where(DB::raw("CONCAT(`customer_name`,' ',`address`)"), 'like', '%' . $search . '%');
             }
 
             if ($request->order_name == '') {
-                $order_name = 'id_item';
+                $order_name = 'id_customer';
                 $order_type = 'DESC';
             } else {
                 $order_name = $request->order_name;
@@ -57,8 +57,8 @@ class ItemController extends Controller
 
             $data->orderBy($order_name, $order_type);
 
-            return view('Master.item', $user, [
-                'title' => 'Item',
+            return view('Master.customer', $user, [
+                'title' => 'Customer',
                 'data' => $data->paginate($sortir)
             ]);
         } else {
@@ -66,68 +66,66 @@ class ItemController extends Controller
         }
     }
 
-    public function add_item(Request $request)
+    public function add_customer(Request $request)
     {
-        $data = new Item();
-        $data->item_name = $request->item_name;
-        $data->description = $request->description;
-        $data->unit = $request->unit;
-        $data->price = $request->price;
-        $data->item_inserted_at = date('Y-m-d H:i:s');
-        $data->item_last_updated = date('Y-m-d H:i:s');
-        $data->item_softdel = 0;
+        $data = new Customer();
+        $data->customer_name = $request->customer_name;
+        $data->address = $request->address;
+        $data->phone_number = $request->phone_number;
+        $data->customer_inserted_at = date('Y-m-d H:i:s');
+        $data->customer_last_updated = date('Y-m-d H:i:s');
+        $data->customer_softdel = 0;
 
         $data->save();
         if ($data) {
-            \Session::put('success', 'Add New Item Success!');
+            \Session::put('success', 'Add New Customer Success!');
             return redirect()->back();
         } else {
-            \Session::put('error', 'Add New Item Failed!');
+            \Session::put('error', 'Add New Customer Failed!');
             return redirect()->back();
         }
     }
 
-    public function edit_item(Request $request)
+    public function edit_customer(Request $request)
     {
-        $data = Item::find($request->id_item);
-        $data->item_name = $request->edit_item_name;
-        $data->description = $request->edit_description;
-        $data->unit = $request->edit_unit;
-        $data->price = $request->edit_price;
-        $data->item_last_updated = date('Y-m-d H:i:s');
+        $data = Customer::find($request->id_customer);
+        $data->customer_name = $request->edit_customer_name;
+        $data->address = $request->edit_address;
+        $data->phone_number = $request->edit_phone_number;
+        $data->customer_last_updated = date('Y-m-d H:i:s');
 
         $data->save();
         if ($data) {
-            \Session::put('success', 'Update Item Success!');
+            \Session::put('success', 'Update Customer Success!');
             return redirect()->back();
         } else {
-            \Session::put('error', 'Update Item Failed!');
+            \Session::put('error', 'Update Customer Failed!');
             return redirect()->back();
         }
     }
 
-    public function delete_item(Request $request)
+    public function delete_customer(Request $request)
     {
-        $data = Item::find($request->id_item_delete);
-        $data->item_softdel = 1;
+        $data = Customer::find($request->id_customer_delete);
+        $data->customer_softdel = 1;
 
         $data->save();
         if ($data) {
-            \Session::put('success', 'Delete Item Success!');
+            \Session::put('success', 'Delete Customer Success!');
             return redirect()->back();
         } else {
-            \Session::put('error', 'Delete Item Failed!');
+            \Session::put('error', 'Delete Customer Failed!');
             return redirect()->back();
         }
     }
 
-    public function get_id_item($id)
+    public function get_id_customer($id)
     {
-        $data = Item::find($id);
+        $data = Customer::find($id);
 
         return response()->json([
             'status' => 200,
-            'item' => $data,
+            'customer' => $data,
         ]);
     }
 }

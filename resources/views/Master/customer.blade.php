@@ -1,5 +1,5 @@
 @extends('template')
-@section('acces')
+@section('customer')
     <div class="card">
         <div class="card-body">
             <form class="row d-flex" id="search_form" method="GET">
@@ -9,7 +9,7 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAcces">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomer">
                             Add New
                         </button>
                     </div>
@@ -39,24 +39,38 @@
                         <tr class="table-active">
                             <th class="p-1 text-center">No</th>
                             <th class="p-1 text-center">
-                                Acces Name
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesAsc fas fa-arrow-alt-circle-down"></a>
+                                Customer Name
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'customer_name' ? 'brown' : '' }};"
+                                    class="btnCustomerDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'customer_name' ? 'brown' : '' }};"
+                                    class="btnCustomerAsc fas fa-arrow-alt-circle-down"></a>
+                            </th>
+                            <th class="p-1 text-center">
+                                Address
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'address' ? 'brown' : '' }};"
+                                    class="btnAddressDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'address' ? 'brown' : '' }};"
+                                    class="btnAddressAsc fas fa-arrow-alt-circle-down"></a>
+                            </th>
+                            <th class="p-1 text-center">
+                                Phone Number
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'phone_number' ? 'brown' : '' }};"
+                                    class="btnPhoneDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'phone_number' ? 'brown' : '' }};"
+                                    class="btnPhoneAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Inserted At
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_inserted_at' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'customer_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_inserted_at' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'customer_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Updated At
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_last_updated' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'customer_last_updated' ? 'brown' : '' }};"
                                     class="btnUpdatedDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_last_updated' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'customer_last_updated' ? 'brown' : '' }};"
                                     class="btnUpdatedAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
@@ -77,19 +91,21 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td style="font-size: 14px;" class="p-2">{{ ++$no }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->acces_name }}</td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->customer_name }}</td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->address }}</td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->phone_number }}</td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        {{ date('d F Y h:i:s', strtotime($item->acces_inserted_at)) }}
+                                        {{ date('d F Y h:i:s', strtotime($item->customer_inserted_at)) }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        {{ date('d F Y h:i:s', strtotime($item->acces_last_updated)) }}
+                                        {{ date('d F Y h:i:s', strtotime($item->customer_last_updated)) }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        <button type="button" value="{{ $item->id_acces }}"
+                                        <button type="button" value="{{ $item->id_customer }}"
                                             class="btn rounded-pill btn-icon btn-danger deleteBtn">
                                             <span class="fas fa-trash-alt fa-2xs"></span>
                                         </button>
-                                        <button type="button" value="{{ $item->id_acces }}"
+                                        <button type="button" value="{{ $item->id_customer }}"
                                             class="btn rounded-pill btn-icon btn-warning ms-2 editBtn">
                                             <span class="fas fa-edit fa-2xs"></span>
                                         </button>
@@ -131,21 +147,35 @@
     </div>
 
     {{-- Modal Add --}}
-    <div class="modal fade" id="addAcces" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="addCustomer" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Add {{ $title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('acces/add_acces') }}"method="POST" enctype="multipart/form-data">
+                <form action="{{ route('customer/add_customer') }}"method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Acces Name</label>
+                            <label class="col-sm-4 col-form-label">Customer Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="acces_name" name="acces_name"
+                                <input type="text" class="form-control" id="customer_name" name="customer_name"
                                     placeholder="Insert acces name" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Address</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="address" name="address"
+                                    placeholder="Insert address" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Phone Number</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="phone_number" name="phone_number"
+                                    placeholder="Insert phone number" required>
                             </div>
                         </div>
                     </div>
@@ -161,22 +191,36 @@
     </div>
 
     {{-- Modal Edit --}}
-    <div class="modal fade" id="editAcces" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="editCustomer" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Edit {{ $title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('acces/edit_acces') }}"method="POST" enctype="multipart/form-data">
+                <form action="{{ route('customer/edit_customer') }}"method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="id_acces" id="id_acces">
+                    <input type="hidden" name="id_customer" id="id_customer">
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Acces Name</label>
+                            <label class="col-sm-4 col-form-label">Customer Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="edit_acces_name" name="edit_acces_name"
+                                <input type="text" class="form-control" id="edit_customer_name" name="edit_customer_name"
                                     placeholder="Insert acces name" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Address</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="edit_address" name="edit_address"
+                                    placeholder="Insert address" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Phone Number</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="edit_phone_number" name="edit_phone_number"
+                                    placeholder="Insert phone number" required>
                             </div>
                         </div>
                     </div>
@@ -199,13 +243,13 @@
                     <h5 class="modal-title" id="modalCenterTitle">Delete {{ $title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('acces/delete_acces') }}"method="POST" enctype="multipart/form-data">
+                <form action="{{ route('customer/delete_customer') }}"method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <input type="hidden" id="id_acces_delete" name="id_acces_delete">
+                            <input type="hidden" id="id_customer_delete" name="id_customer_delete">
                             <label class="form-label" style="text-transform: uppercase">Are you sure
-                                want to delete <span id="acces_name_delete" style="font-weight:bold"></span>?</label>
+                                want to delete <span id="delete_customer_name" style="font-weight:bold"></span>?</label>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -241,73 +285,95 @@
             $('#order_type').val('');
             $('#search_form').submit();
         });
-        $('.btnAccesDesc').click(function() {
-            $('#order_name').val('acces_name');
+        $('.btnCustomerDesc').click(function() {
+            $('#order_name').val('customer_name');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
-        $('.btnAccesAsc').click(function() {
-            $('#order_name').val('acces_name');
+        $('.btnCustomerAsc').click(function() {
+            $('#order_name').val('customer_name');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnAddressDesc').click(function() {
+            $('#order_name').val('address');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnAddressAsc').click(function() {
+            $('#order_name').val('address');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnPhoneDesc').click(function() {
+            $('#order_name').val('phone_number');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnPhoneAsc').click(function() {
+            $('#order_name').val('phone_number');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnInsertDesc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('customer_inserted_at');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnInsertAsc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('customer_inserted_at');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnUpdatedDesc').click(function() {
-            $('#order_name').val('acces_last_updated');
+            $('#order_name').val('customer_last_updated');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnUpdatedAsc').click(function() {
-            $('#order_name').val('acces_last_updated');
+            $('#order_name').val('customer_last_updated');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
-        // Edit Acces
+        // Edit Customer
         $(document).ready(function() {
             $(document).on('click', '.editBtn', function() {
-                var id_acces = $(this).val();
-                console.log(id_acces);
+                var id_customer = $(this).val();
+                console.log(id_customer);
 
-                $('#editAcces').modal('show')
+                $('#editCustomer').modal('show')
 
                 $.ajax({
                     type: 'GET',
-                    url: "{{ url('get_id_acces') }}/" + id_acces,
+                    url: "{{ url('get_id_customer') }}/" + id_customer,
                     success: function(response) {
                         console.log(response)
-                        $('#edit_acces_name').val(response.acces.acces_name)
-                        $('#id_acces').val(response.acces.id_acces)
+                        $('#edit_customer_name').val(response.customer.customer_name)
+                        $('#edit_address').val(response.customer.address)
+                        $('#edit_phone_number').val(response.customer.phone_number)
+                        $('#id_customer').val(response.customer.id_customer)
                     }
                 })
             })
         });
 
-        // Delete Acces
+        // Delete Csutomer
         $(document).ready(function() {
             $(document).on('click', '.deleteBtn', function() {
-                var id_acces = $(this).val();
-                console.log(id_acces);
+                var id_customer = $(this).val();
+                console.log(id_customer);
 
                 $('#deleteAcces').modal('show')
 
                 $.ajax({
                     type: 'GET',
-                    url: "{{ url('get_id_acces') }}/" + id_acces,
+                    url: "{{ url('get_id_customer') }}/" + id_customer,
                     success: function(response) {
                         console.log(response)
-                        $('#id_acces_delete').val(response.acces.id_acces)
-                        document.getElementById("acces_name_delete").textContent =
-                            response.acces
-                            .acces_name;
+                        $('#id_customer_delete').val(response.customer.id_customer)
+                        document.getElementById("delete_customer_name").textContent =
+                            response.customer
+                            .customer_name;
                     }
                 })
             })

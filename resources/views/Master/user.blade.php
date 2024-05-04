@@ -1,5 +1,5 @@
 @extends('template')
-@section('item')
+@section('user')
     <div class="card">
         <div class="card-body">
             <form class="row d-flex" id="search_form" method="GET">
@@ -9,7 +9,7 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItem">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser">
                             Add New
                         </button>
                     </div>
@@ -39,45 +39,45 @@
                         <tr class="table-active">
                             <th class="p-1 text-center">No</th>
                             <th class="p-1 text-center">
-                                Item Name
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'item_name' ? 'brown' : '' }};"
-                                    class="btnItemDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'item_name' ? 'brown' : '' }};"
-                                    class="btnItemAsc fas fa-arrow-alt-circle-down"></a>
+                                Name
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'first_name' ? 'brown' : '' }};"
+                                    class="btnNameDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'first_name' ? 'brown' : '' }};"
+                                    class="btnNameAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
-                                Description
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'description' ? 'brown' : '' }};"
-                                    class="btnDescriptionDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'description' ? 'brown' : '' }};"
-                                    class="btnDescriptionAsc fas fa-arrow-alt-circle-down"></a>
+                                Phone Number
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'phone_number' ? 'brown' : '' }};"
+                                    class="btnPhoneDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'phone_number' ? 'brown' : '' }};"
+                                    class="btnPhoneAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
-                                Unit
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'unit' ? 'brown' : '' }};"
-                                    class="btnUnitDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'unit' ? 'brown' : '' }};"
-                                    class="btnUnitAsc fas fa-arrow-alt-circle-down"></a>
+                                Address
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'address' ? 'brown' : '' }};"
+                                    class="btnAddressDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'address' ? 'brown' : '' }};"
+                                    class="btnAddressAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
-                                Unit
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'price' ? 'brown' : '' }};"
-                                    class="btnPriceDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'price' ? 'brown' : '' }};"
-                                    class="btnPriceAsc fas fa-arrow-alt-circle-down"></a>
+                                Access
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'id_acces' ? 'brown' : '' }};"
+                                    class="btnAccesDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'id_acces' ? 'brown' : '' }};"
+                                    class="btnAccesAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Inserted At
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'item_inserted_at' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'user_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'item_inserted_at' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'user_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Updated At
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'item_last_updated' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'user_last_updated' ? 'brown' : '' }};"
                                     class="btnUpdatedDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'item_last_updated' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'user_last_updated' ? 'brown' : '' }};"
                                     class="btnUpdatedAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
@@ -98,27 +98,31 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td style="font-size: 14px;" class="p-2">{{ ++$no }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->item_name }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->description }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->unit }}</td>
-                                    <td style="font-size: 14px;" class="p-2">{{ $item->price }}</td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        {{ date('d F Y h:i:s', strtotime($item->item_inserted_at)) }}
+                                        {{ $item->first_name }} {{ $item->last_name }}
+                                    </td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->phone_number }}</td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->address }}</td>
+                                    <td style="font-size: 14px;" class="p-2">{{ $item->acces_name }}</td>
+                                    <td style="font-size: 14px;" class="p-2">
+                                        {{ date('d F Y h:i:s', strtotime($item->user_inserted_at)) }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        {{ date('d F Y h:i:s', strtotime($item->item_last_updated)) }}
+                                        {{ date('d F Y h:i:s', strtotime($item->user_last_updated)) }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        <button type="button" value="{{ $item->id_item }}"
+                                        <button type="button" value="{{ $item->id_user }}"
                                             class="btn rounded-pill btn-icon btn-danger deleteBtn">
                                             <span class="fas fa-trash-alt fa-2xs"></span>
                                         </button>
-                                        <button type="button" value="{{ $item->id_item }}"
+                                        <button type="button" value="{{ $item->id_user }}"
                                             class="btn rounded-pill btn-icon btn-warning ms-2 editBtn">
                                             <span class="fas fa-edit fa-2xs"></span>
                                         </button>
                                     </td>
                                 </tr>
+                                <input type="hidden" id="data_id_acces<?= $item->id_user ?>"
+                                    value="<?= $item->id_acces ?>">
                             @endforeach
                         @endif
                     </tbody>
@@ -155,42 +159,68 @@
     </div>
 
     {{-- Modal Add --}}
-    <div class="modal fade" id="addItem" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="addUser" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Add {{ $title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('item/add_item') }}"method="POST" enctype="multipart/form-data">
+                <form action="{{ route('user/add_user') }}"method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Item Name</label>
+                            <label class="col-sm-4 col-form-label">Username</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="item_name" name="item_name"
-                                    placeholder="Insert item name">
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Insert username" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Description</label>
+                            <label class="col-sm-4 col-form-label">Password</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="description" name="description"
-                                    placeholder="Insert description">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Insert password" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Unit</label>
+                            <label class="col-sm-4 col-form-label">First Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="unit" name="unit"
-                                    placeholder="Insert unit">
+                                <input type="text" class="form-control" id="first_name" name="first_name"
+                                    placeholder="Insert first name" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Price</label>
+                            <label class="col-sm-4 col-form-label">Last Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="price" name="price"
-                                    placeholder="Insert price">
+                                <input type="text" class="form-control" id="last_name" name="last_name"
+                                    placeholder="Insert last name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Phone Number</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="phone_number" name="phone_number"
+                                    placeholder="Insert phone number" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Inser address" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Acces</label>
+                            <div class="col-sm-8">
+                                <select class="form-select id_acces" id="id_acces" name="id_acces"
+                                    style="width: 100% ! important;">
+                                    <option hidden value="">Select Acces</option>
+                                    @foreach ($acces as $data)
+                                        <option value="{{ $data->id_acces }}">
+                                            {{ $data->acces_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -206,43 +236,74 @@
     </div>
 
     {{-- Modal Edit --}}
-    <div class="modal fade" id="editItem" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Edit {{ $title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('item/edit_item') }}"method="POST" enctype="multipart/form-data">
+                <form action="{{ route('user/edit_user') }}"method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="id_item" id="id_item">
+                    <input type="hidden" name="id_user" id="id_user">
+
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Item Name</label>
+                            <label class="col-sm-4 col-form-label">Username</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="edit_item_name" name="edit_item_name"
-                                    placeholder="Insert item name" required>
+                                <input type="text" class="form-control" id="edit_username" name="edit_username"
+                                    placeholder="Insert username" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Description</label>
+                            <label class="col-sm-4 col-form-label">Password</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="edit_description" name="edit_description"
-                                    placeholder="Insert description" required>
+                                <input type="password" class="form-control" id="edit_password" name="edit_password"
+                                    placeholder="Insert password" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Unit</label>
+                            <label class="col-sm-4 col-form-label">First Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="edit_unit" name="edit_unit"
-                                    placeholder="Insert unit" required>
+                                <input type="text" class="form-control" id="edit_first_name" name="edit_first_name"
+                                    placeholder="Insert first name" required>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Price</label>
+                            <label class="col-sm-4 col-form-label">Last Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="edit_price" name="edit_price"
-                                    placeholder="Insert price">
+                                <input type="text" class="form-control" id="edit_last_name" name="edit_last_name"
+                                    placeholder="Insert last name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Phone Number</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="edit_phone_number"
+                                    name="edit_phone_number" placeholder="Insert phone number" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="edit_address" name="edit_address" rows="3" placeholder="Inser address"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Acces</label>
+                            <div class="col-sm-8">
+                                <select class="form-select edit_id_acces" id="edit_id_acces" name="edit_id_acces"
+                                    style="width: 100% ! important;" value="">
+                                    <option hidden value="">Select Acces</option>
+                                    <?php
+                                    ?>
+                                    @foreach ($acces as $data)
+                                        <option value="{{ $data->id_acces }}"
+                                            {{ $data->id_acces == $data->id_acces ? 'selected' : '' }}>
+                                            {{ $data->acces_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -258,20 +319,20 @@
     </div>
 
     {{-- Modal Delete --}}
-    <div class="modal fade" id="deleteItem" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="deleteUser" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Delete {{ $title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('item/delete_item') }}"method="POST" enctype="multipart/form-data">
+                <form action="{{ route('user/delete_user') }}"method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="row mb-3">
-                            <input type="hidden" id="id_item_delete" name="id_item_delete">
+                            <input type="hidden" id="id_user_delete" name="id_user_delete">
                             <label class="form-label" style="text-transform: uppercase">Are you sure
-                                want to delete <span id="item_name_delete" style="font-weight:bold"></span>?</label>
+                                want to delete <span id="name_delete" style="font-weight:bold"></span>?</label>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -307,84 +368,58 @@
             $('#order_type').val('');
             $('#search_form').submit();
         });
-        $('.btnItemDesc').click(function() {
-            $('#order_name').val('item_name');
+        $('.btnAccesDesc').click(function() {
+            $('#order_name').val('acces_name');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
-        $('.btnItemAsc').click(function() {
-            $('#order_name').val('item_name');
-            $('#order_type').val('ASC');
-            $('#search_form').submit();
-        });
-        $('.btnDescriptionDesc').click(function() {
-            $('#order_name').val('description');
-            $('#order_type').val('DESC');
-            $('#search_form').submit();
-        });
-        $('.btnDescriptionAsc').click(function() {
-            $('#order_name').val('description');
-            $('#order_type').val('ASC');
-            $('#search_form').submit();
-        });
-        $('.btnUnitDesc').click(function() {
-            $('#order_name').val('unit');
-            $('#order_type').val('DESC');
-            $('#search_form').submit();
-        });
-        $('.btnUnitAsc').click(function() {
-            $('#order_name').val('unit');
-            $('#order_type').val('ASC');
-            $('#search_form').submit();
-        });
-        $('.btnPriceDesc').click(function() {
-            $('#order_name').val('Price');
-            $('#order_type').val('DESC');
-            $('#search_form').submit();
-        });
-        $('.btnPriceAsc').click(function() {
-            $('#order_name').val('Price');
+        $('.btnAccesAsc').click(function() {
+            $('#order_name').val('acces_name');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnInsertDesc').click(function() {
-            $('#order_name').val('item_inserted_at');
+            $('#order_name').val('acces_inserted_at');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnInsertAsc').click(function() {
-            $('#order_name').val('item_inserted_at');
+            $('#order_name').val('acces_inserted_at');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnUpdatedDesc').click(function() {
-            $('#order_name').val('item_last_updated');
+            $('#order_name').val('acces_last_updated');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnUpdatedAsc').click(function() {
-            $('#order_name').val('item_last_updated');
+            $('#order_name').val('acces_last_updated');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         // Edit Item
         $(document).ready(function() {
             $(document).on('click', '.editBtn', function() {
-                var id_item = $(this).val();
-                console.log(id_item);
+                var id_user = $(this).val();
+                console.log(id_user);
 
-                $('#editItem').modal('show')
+                $('#editUser').modal('show')
 
                 $.ajax({
                     type: 'GET',
-                    url: "{{ url('get_id_item') }}/" + id_item,
+                    url: "{{ url('detail_user') }}/" + id_user,
                     success: function(response) {
                         console.log(response)
-                        $('#edit_item_name').val(response.item.item_name)
-                        $('#edit_description').val(response.item.description)
-                        $('#edit_unit').val(response.item.unit)
-                        $('#edit_price').val(response.item.price)
-                        $('#id_item').val(response.item.id_item)
+                        $('#edit_username').val(response.user.username)
+                        $('#edit_password').val(response.user.password)
+                        $('#edit_first_name').val(response.user.first_name)
+                        $('#edit_last_name').val(response.user.last_name)
+                        $('#edit_phone_number').val(response.user.phone_number)
+                        $('#edit_address').val(response.user.address)
+                        $('#edit_id_acces').val($('#data_id_acces' + id_user).val()).trigger(
+                            "change");
+                        $('#id_user').val(response.user.id_user)
                     }
                 })
             })
@@ -393,23 +428,36 @@
         // Delete Item
         $(document).ready(function() {
             $(document).on('click', '.deleteBtn', function() {
-                var id_item = $(this).val();
-                console.log(id_item);
+                var id_user = $(this).val();
+                console.log(id_user);
 
-                $('#deleteItem').modal('show')
+                $('#deleteUser').modal('show')
 
                 $.ajax({
                     type: 'GET',
-                    url: "{{ url('get_id_item') }}/" + id_item,
+                    url: "{{ url('detail_user') }}/" + id_user,
                     success: function(response) {
                         console.log(response)
-                        $('#id_item_delete').val(response.item.id_item)
-                        document.getElementById("item_name_delete").textContent =
-                            response.item
-                            .item_name;
+                        $('#id_user_delete').val(response.user.id_user)
+                        document.getElementById("name_delete").textContent =
+                            response.user
+                            .first_name + " " + response.user.last_name;
                     }
                 })
             })
+        });
+
+        $(document).ready(function() {
+            $('.id_acces').select2({
+                placeholder: 'Select Acces',
+                dropdownParent: $("#addUser")
+
+            });
+            $('.edit_id_acces').select2({
+                placeholder: 'Select Acces',
+                dropdownParent: $("#editUser")
+
+            });
         });
     </script>
 @endsection

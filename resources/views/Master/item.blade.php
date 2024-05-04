@@ -120,7 +120,8 @@
                                     <td style="font-size: 14px;" class="p-2">{{ $item->description }}</td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->unit }}</td>
                                     <td style="font-size: 14px;" class="p-2">
-                                        {{ 'Rp. ' . number_format($item->price, 0, ',', '.') }}
+                                        {{-- {{ 'Rp. ' . number_format($item->price, 0, ',', '.') }} --}}
+                                        {{ 'Rp. ' . $item->price }}
                                     </td>
                                     <td style="font-size: 14px;" class="p-2">{{ $item->supplier_name }}</td>
                                     <td style="font-size: 14px;" class="p-2">
@@ -492,6 +493,37 @@
                 placeholder: 'Select Supplier',
 
             });
+        });
+
+        function formatRupiah(angka) {
+            var number_string = angka.toString().replace(/[^,\d]/g, ''),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+           
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return rupiah;
+        }
+
+        document.getElementById('price').addEventListener('keyup', function(e) {
+          
+            var price = this.value;
+            price = price.replace(/[^\d]/g, '');
+            this.value = formatRupiah(price);
+        });
+
+        document.getElementById('edit_price').addEventListener('keyup', function(e) {
+           
+            var edit_price = this.value;
+            edit_price = edit_price.replace(/[^\d]/g, '');
+            this.value = formatRupiah(edit_price);
         });
     </script>
 @endsection

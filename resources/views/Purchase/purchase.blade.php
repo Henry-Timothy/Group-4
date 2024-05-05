@@ -51,45 +51,41 @@
                             <th class="p-1 text-center">No</th>
                             <th class="p-1 text-center">
                                 Item Name
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesAsc fas fa-arrow-alt-circle-down"></a>
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'id_item' ? 'brown' : '' }};"
+                                    class="btnItemDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'id_item' ? 'brown' : '' }};"
+                                    class="btnItemAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Purchase Amount
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesAsc fas fa-arrow-alt-circle-down"></a>
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'purchase_amount' ? 'brown' : '' }};"
+                                    class="btnAmountDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'purchase_amount' ? 'brown' : '' }};"
+                                    class="btnAmountAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Price / Item
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Purchase Price
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_name' ? 'brown' : '' }};"
-                                    class="btnAccesAsc fas fa-arrow-alt-circle-down"></a>
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'purchase_price' ? 'brown' : '' }};"
+                                    class="btnPriceDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'purchase_price' ? 'brown' : '' }};"
+                                    class="btnPriceAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Inserted At
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_inserted_at' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'purchase_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_inserted_at' ? 'brown' : '' }};"
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'purchase_inserted_at' ? 'brown' : '' }};"
                                     class="btnInsertAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
                             <th class="p-1 text-center">
                                 Inserted By
-                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'acces_last_updated' ? 'brown' : '' }};"
-                                    class="btnUpdatedDesc fas fa-arrow-alt-circle-up"></a>
-                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'acces_last_updated' ? 'brown' : '' }};"
-                                    class="btnUpdatedAsc fas fa-arrow-alt-circle-down"></a>
+                                <a style="color:{{ request('order_type') == 'DESC' && request('order_name') == 'id_user' ? 'brown' : '' }};"
+                                    class="btnIdUserDesc fas fa-arrow-alt-circle-up"></a>
+                                <a style="color:{{ request('order_type') == 'ASC' && request('order_name') == 'id_user' ? 'brown' : '' }};"
+                                    class="btnIdUserAsc fas fa-arrow-alt-circle-down"></a>
                             </th>
 
                         </tr>
@@ -231,33 +227,53 @@
             $('#order_type').val('');
             $('#search_form').submit();
         });
-        $('.btnAccesDesc').click(function() {
-            $('#order_name').val('acces_name');
+        $('.btnItemDesc').click(function() {
+            $('#order_name').val('id_item');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
-        $('.btnAccesAsc').click(function() {
-            $('#order_name').val('acces_name');
+        $('.btnItemAsc').click(function() {
+            $('#order_name').val('id_item');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnAmountDesc').click(function() {
+            $('#order_name').val('purchase_amount');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnAmountAsc').click(function() {
+            $('#order_name').val('purchase_amount');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnPriceDesc').click(function() {
+            $('#order_name').val('purchase_price');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnPriceAsc').click(function() {
+            $('#order_name').val('purchase_price');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnInsertDesc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('purchase_inserted_at');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnInsertAsc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('purchase_inserted_at');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
-        $('.btnUpdatedDesc').click(function() {
-            $('#order_name').val('acces_last_updated');
+        $('.btnIdUserDesc').click(function() {
+            $('#order_name').val('id_user');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
-        $('.btnUpdatedAsc').click(function() {
-            $('#order_name').val('acces_last_updated');
+        $('.btnIdUserAsc').click(function() {
+            $('#order_name').val('id_user');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });

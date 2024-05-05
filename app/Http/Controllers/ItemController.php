@@ -16,9 +16,9 @@ class ItemController extends Controller
     public function get_id_user(Request $request)
     {
         $id_user = $request->Session()->get('id_user');
-        $user = DB::table('punya_farrel.tb_user')
+        $user = DB::table('tk_4.tb_user')
             ->select('tb_user.first_name', 'tb_user.last_name', 'tb_user.id_user', 'tb_user.id_acces', 'tb_acces.acces_name')
-            ->join('punya_farrel.tb_acces', 'tb_acces.id_acces', 'tb_user.id_acces')
+            ->join('tk_4.tb_acces', 'tb_acces.id_acces', 'tb_user.id_acces')
             ->where('id_user', $id_user)
             ->first();
         return $user;
@@ -37,15 +37,15 @@ class ItemController extends Controller
                 $sortir = $request->sortir;
             }
 
-            $supplier = DB::table('punya_farrel.tb_supplier')
+            $supplier = DB::table('tk_4.tb_supplier')
                 ->where('supplier_softdel', 0)
                 ->get();
 
             $search = $request->search;
 
-            $data = DB::table('punya_farrel.tb_item')
+            $data = DB::table('tk_4.tb_item')
                 ->select('tb_item.*', 'tb_supplier.supplier_name')
-                ->leftJoin('punya_farrel.tb_supplier', 'tb_supplier.id_supplier', 'tb_item.id_supplier')
+                ->leftJoin('tk_4.tb_supplier', 'tb_supplier.id_supplier', 'tb_item.id_supplier')
                 ->where('item_softdel', 0);
 
             if ($request->search) {

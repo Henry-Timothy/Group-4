@@ -24,14 +24,14 @@ class AuthController extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        $account = DB::table('punya_farrel.tb_user')
+        $account = DB::table('tk_4.tb_user')
             ->where('username', $username)
             ->where('password', $password)
             ->where('user_softdel', 0)
             ->first();
 
         if ($account != null) {
-            $check_level = DB::table('punya_farrel.tb_acces')
+            $check_level = DB::table('tk_4.tb_acces')
                 ->where('id_acces', $account->id_acces)
                 ->first();
             if ($check_level != null) {

@@ -16,9 +16,9 @@ class CustomerController extends Controller
     public function get_id_user(Request $request)
     {
         $id_user = $request->Session()->get('id_user');
-        $user = DB::table('punya_farrel.tb_user')
+        $user = DB::table('tk_4.tb_user')
             ->select('tb_user.first_name', 'tb_user.last_name', 'tb_user.id_user', 'tb_user.id_acces', 'tb_acces.acces_name')
-            ->join('punya_farrel.tb_acces', 'tb_acces.id_acces', 'tb_user.id_acces')
+            ->join('tk_4.tb_acces', 'tb_acces.id_acces', 'tb_user.id_acces')
             ->where('id_user', $id_user)
             ->first();
         return $user;
@@ -39,7 +39,7 @@ class CustomerController extends Controller
 
             $search = $request->search;
 
-            $data = DB::table('punya_farrel.tb_customer')
+            $data = DB::table('tk_4.tb_customer')
                 ->select('tb_customer.*')
                 ->where('customer_softdel', 0);
 

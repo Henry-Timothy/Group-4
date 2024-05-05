@@ -379,33 +379,63 @@
             $('#order_type').val('');
             $('#search_form').submit();
         });
+        $('.btnNameDesc').click(function() {
+            $('#order_name').val('first_name');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnNameAsc').click(function() {
+            $('#order_name').val('first_name');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnPhoneDesc').click(function() {
+            $('#order_name').val('phone_number');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnPhoneAsc').click(function() {
+            $('#order_name').val('phone_number');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
+        $('.btnAddressDesc').click(function() {
+            $('#order_name').val('address');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnAddressAsc').click(function() {
+            $('#order_name').val('address');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
         $('.btnAccesDesc').click(function() {
-            $('#order_name').val('acces_name');
+            $('#order_name').val('id_acces');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnAccesAsc').click(function() {
-            $('#order_name').val('acces_name');
+            $('#order_name').val('id_acces');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnInsertDesc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('user_inserted_at');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnInsertAsc').click(function() {
-            $('#order_name').val('acces_inserted_at');
+            $('#order_name').val('user_inserted_at');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
         $('.btnUpdatedDesc').click(function() {
-            $('#order_name').val('acces_last_updated');
+            $('#order_name').val('user_last_updated');
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
         $('.btnUpdatedAsc').click(function() {
-            $('#order_name').val('acces_last_updated');
+            $('#order_name').val('user_last_updated');
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });

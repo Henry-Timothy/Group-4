@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    protected $table = 'punya_farrel.tb_transaction';
+    protected $table = 'tk_4.tb_transaction';
     protected $primaryKey = 'id_transaction';
     public $timestamps = false;
 }

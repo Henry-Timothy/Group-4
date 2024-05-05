@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    protected $table = 'punya_farrel.tb_user';
+    protected $table = 'tk_4.tb_user';
     protected $primaryKey = 'id_user';
     public $timestamps = false;
 }

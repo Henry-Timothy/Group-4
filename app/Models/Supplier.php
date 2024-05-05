@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-    protected $table = 'punya_farrel.tb_supplier';
+    protected $table = 'tk_4.tb_supplier';
     protected $primaryKey = 'id_supplier';
     public $timestamps = false;
 }

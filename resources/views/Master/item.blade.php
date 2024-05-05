@@ -379,16 +379,16 @@
             $('#order_type').val('ASC');
             $('#search_form').submit();
         });
-        // $('.btnUnitDesc').click(function() {
-        //     $('#order_name').val('unit');
-        //     $('#order_type').val('DESC');
-        //     $('#search_form').submit();
-        // });
-        // $('.btnUnitAsc').click(function() {
-        //     $('#order_name').val('unit');
-        //     $('#order_type').val('ASC');
-        //     $('#search_form').submit();
-        // });
+        $('.btnUnitDesc').click(function() {
+            $('#order_name').val('unit');
+            $('#order_type').val('DESC');
+            $('#search_form').submit();
+        });
+        $('.btnUnitAsc').click(function() {
+            $('#order_name').val('unit');
+            $('#order_type').val('ASC');
+            $('#search_form').submit();
+        });
         $('.btnPriceDesc').click(function() {
             $('#order_name').val('price');
             $('#order_type').val('DESC');
@@ -404,7 +404,7 @@
             $('#order_type').val('DESC');
             $('#search_form').submit();
         });
-        $('.btnSeupplierAsc').click(function() {
+        $('.btnSupplierAsc').click(function() {
             $('#order_name').val('id_supplier');
             $('#order_type').val('ASC');
             $('#search_form').submit();

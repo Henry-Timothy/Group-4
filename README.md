@@ -14,5 +14,5 @@
 <h4>2. Import Database</h4>
 <p>Pastikan Apache dan MySQL sudah menyala</p>
 <img width="505" alt="Screenshot 2024-05-06 083130" src="https://github.com/farrelbas/introduction_to_data_group_4/assets/55417641/0398c9c4-027b-4746-b0a6-deb7e1fe24eb">
-
+<p>Kemudian buka <a href="http://localhost/phpmyadmin/">http://localhost/phpmyadmin/</a></p>
 

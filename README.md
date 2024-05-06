@@ -21,5 +21,6 @@
     <li>Masukan nama table <b>tk_4</b></li>
     <li>Click <b>Create</b></li>
 </ul>
-<img width="959" alt="Untitled" src="https://github.com/farrelbas/introduction_to_data_group_4/assets/55417641/3484a9ca-d072-499c-9407-f4103793098c">
+<img width="959" alt="Untitled" src="https://github.com/farrelbas/introduction_to_data_group_4/assets/55417641/94d19e6e-b2a3-457f-922b-bb5bff73edef">
+
 

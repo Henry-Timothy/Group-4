@@ -15,4 +15,11 @@
 <p>Pastikan Apache dan MySQL sudah menyala</p>
 <img width="505" alt="Screenshot 2024-05-06 083130" src="https://github.com/farrelbas/introduction_to_data_group_4/assets/55417641/0398c9c4-027b-4746-b0a6-deb7e1fe24eb">
 <p>Kemudian buka <a href="http://localhost/phpmyadmin/">http://localhost/phpmyadmin/</a></p>
+<p>Buat table baru dengan nama <b>tk_4</b></p>
+<ul>
+    <li>Click <b>New</b></li>
+    <li>Masukan nama table <b>tk_4</b></li>
+    <li>Click <b>Create</b></li>
+</ul>
+<img width="959" alt="Untitled" src="https://github.com/farrelbas/introduction_to_data_group_4/assets/55417641/3484a9ca-d072-499c-9407-f4103793098c">
 

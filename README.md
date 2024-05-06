@@ -24,5 +24,5 @@
 </ul>
 <img width="959" alt="Untitled" src="https://github.com/farrelbas/introduction_to_data_group_4/assets/55417641/94d19e6e-b2a3-457f-922b-bb5bff73edef">
 <h4>3. Clone Project dan Run Project</h4>
-<a href="[[https://drive.google.com/drive/folders/11mKJaHoI4tDjxJDW7XruIL4u6lEw11hx?usp=sharing](https://drive.google.com/file/d/1tUz-0dc7J-CC5CXxMIYmtqmGwtrX3wAa/view?usp=sharing)](https://drive.google.com/file/d/1tUz-0dc7J-CC5CXxMIYmtqmGwtrX3wAa/view)" target="_blank">[[https://drive.google.com/drive/folders/11mKJaHoI4tDjxJDW7XruIL4u6lEw11hx?usp=sharing](https://drive.google.com/file/d/1tUz-0dc7J-CC5CXxMIYmtqmGwtrX3wAa/view?usp=sharing)](https://drive.google.com/file/d/1tUz-0dc7J-CC5CXxMIYmtqmGwtrX3wAa/view)</a>
+<a href="https://drive.google.com/file/d/1tUz-0dc7J-CC5CXxMIYmtqmGwtrX3wAa/view" target="_blank">https://drive.google.com/file/d/1tUz-0dc7J-CC5CXxMIYmtqmGwtrX3wAa/view</a>
 
